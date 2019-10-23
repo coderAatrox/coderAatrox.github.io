@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>C++局部静态对象</title>
+    <url>/2019/10/23/C-%E5%B1%80%E9%83%A8%E9%9D%99%E6%80%81%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<h1 id="局部静态对象"><a href="#局部静态对象" class="headerlink" title="局部静态对象"></a>局部静态对象</h1><p>C++局部静态对象的生命周期不受块的约束，在程序的执行路径<strong>第一次经过对象定义语句时初始化</strong>，直到<strong>程序结束才被销毁</strong>。在此期间，即便是变量所在函数结束执行也不会对它产生影响。</p>
+<p>以我之前经历作为一个例子，当时是要写一个文件读取函数，读取服务配置信息。如果没读到，就返回一个默认值。如果没有将变量 <code>ret</code>设为局域静态变量，那么我每调用一次GetFileString()，就要重新从文件里读配置信息。如果设置为静态变量，那么不论调用多少次，只要程序没结束，实际上就<strong>只用读一次</strong>。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">GetFileString</span><span class="params">(<span class="built_in">std</span>::sting filename)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">string</span> ret = <span class="string">""</span>;</span><br><span class="line">  <span class="keyword">if</span> (ret.empty())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 读文件字符串赋给ret</span></span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (ret.empty())</span><br><span class="line">  &#123;</span><br><span class="line">    ret = <span class="string">"default_value"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线程管理的基础（一）</title>
+    <url>/2019/10/18/%E7%BA%BF%E7%A8%8B%E7%AE%A1%E7%90%86%E7%9A%84%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="启动线程"><a href="#启动线程" class="headerlink" title="启动线程"></a>启动线程</h1><p>线程在<code>std::thread</code>对象创建时启动。最简单的情况下，任务也会很简单，通常时无参数无返回（void-returning）的函数。这些函数在线程上运行，函数运行完，线程就结束了。<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;  </span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function_1</span><span class="params">()</span></span>;  <span class="comment">// 无参数无返回的函数</span></span><br><span class="line"><span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">(function_1)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>同样的，<code>std::thread</code>可以用<strong>可调用(callable)类型</strong>构造，将带有函数调用符类型的实例传入<code>std::thread</code>类中，替换默认的构造函数。<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ctask</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">()</span> <span class="keyword">const</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        do_something();</span><br><span class="line">        do_something_else();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Ctask f;</span><br><span class="line"><span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">(f)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>代码中，提供的<strong>函数对象会复制到新线程的存储空间中</strong>，函数对象的<code>执行和调用都在线程的内存空间中进行</code>。</p>
+<p>同时，当我们传递了一个<strong>临时变量</strong>而不是一个命名的变量时，C++编译器会将其<code>解析为函数声明</code>，而不是类型对象的定义。<br>例如：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">(Ctask())</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>这里相当于声明了一个名为<code>my_thread</code>的函数，这个函数带有一个参数（函数指针指向没有参数并返回Ctask对象的函数，返回一个<code>std::thread</code>对象的函数，而非启动了线程。下图是一个示例：</p>
+<p>有三种方法可以避免这个问题：</p>
+<ol>
+<li>在启动线程前先命名好函数对象。</li>
+<li>使用多组括号。</li>
+<li>使用新的统一化语法。<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">( (Ctask()) )</span></span>; <span class="comment">//使用多组括号</span></span><br><span class="line"><span class="built_in">std</span>::thread my_thread&#123; Ctask() &#125;    <span class="comment">//使用新的统一化语法</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="不要在对象销毁后再去分离线程"><a href="#不要在对象销毁后再去分离线程" class="headerlink" title="不要在对象销毁后再去分离线程"></a>不要在对象销毁后再去分离线程</h1><p>在线程启动后，你需要明确接下来是等待线程结束，还是让其自主分离。如果直到<code>std::thread</code>对象销毁之前还没作出决定，程序就会终止(<code>std::thread</code>的析构函数会调用<code>std::terminate()</code>)。因此，即便是有异常存在，也要保证线程能正确的加入(<strong>join</strong>)或分离(<strong>detached</strong>)，且必须要在<code>std::thread</code>对象销毁之前做决定。在<code>std::thread</code>对象销毁之后再去分离它，线程可能会在<code>std::thread</code>对象销毁之后继续运行下去。<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_something</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">func</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> &amp;i;</span><br><span class="line">    func(<span class="keyword">int</span> &amp;_i) : i(_i)&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;<span class="number">10000</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            do_something(i);        <span class="comment">//1. 存在潜在隐患：悬空引用</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> some_local_state = <span class="number">0</span>;</span><br><span class="line">    <span class="function">func <span class="title">my_func</span><span class="params">(some_local_state)</span></span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function">thread <span class="title">my_thread</span><span class="params">(my_func)</span></span>;     </span><br><span class="line">    my_thread.detach();                 <span class="comment">// 2. 不等待线程结束</span></span><br><span class="line">&#125;                                       <span class="comment">// 3. 新线程可能还在运行</span></span><br></pre></td></tr></table></figure></p>
+<p>这个例子中，我们让线程自主分离(<code>my_thread.detach()</code>)，所以当<code>main</code>函数执行完成时，新线程中的函数可能还在执行。线程继续执行，它会去调用<code>do_something(i)</code>函数，这时就会<strong>访问已销毁的变量</strong>。就好像在一个单线程程序中，允许一个函数在调用结束后继续持有局部变量的指针和引用。容易出错。</p>
+<p>当然我们也有规避的方法：<code>使线程函数的功能齐全，将数据复制到线程中，而非复制到共享数据中</code>。如果使用一个可调用的对象作为线程函数，这个对象就会复制到线程中，而后原始对象就会被销毁。但要小心对象中的<strong>引用和指针</strong>。尽量不要使用一个包含局部变量的函数。</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++多线程（一）</title>
+    <url>/2019/10/10/C-%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<p>转载自<a href="https://segmentfault.com/a/1190000016171072?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000016171072?utm_source=tag-newest</a></p>
+<h1 id="多线程并发（一）"><a href="#多线程并发（一）" class="headerlink" title="多线程并发（一）"></a>多线程并发（一）</h1><h1 id="什么是并发"><a href="#什么是并发" class="headerlink" title="什么是并发"></a>什么是并发</h1><p>对于<strong>单核CPU</strong>，在某个时刻只可能处理一个任务，要想处理另一个任务，只能进行任务切换，看起来任务就像在并行发生。尽管不是在严格的执行多个任务，我们也称其为<strong>并发（concurrency）</strong>。真正的并发是在多核CPU上，能够真正的同时执行多个任务，称谓<strong>硬件并发（hardware concurrency）</strong>。</p>
+<p>并发并非没有代价，单核CPU上想要并发执行任务需要付出任务之间切换的时间代价。如下图：</p>
+<p><img src="/2019/10/10/C-多线程（一）/01.png" alt="单核CPU并发执行任务"><br>单核的CPU交替执行两个任务，每次执行其中一块，其花费的时间大于按照先后顺序依次执行两个任务。这是因为CPU每次切换执行的任务块儿时需要执行一次<strong>上下文切换</strong>（图中的灰色块）。上下文切换需要操作系统为当前运行的任务保存CPU的状态和指令指针，算出要切换到哪个任务，并为要切换的任务重新加载处理器状态。然后将新任务的指令和数据载入到缓存中。</p>
+<h1 id="并发的方式"><a href="#并发的方式" class="headerlink" title="并发的方式"></a>并发的方式</h1><h2 id="多进程并发"><a href="#多进程并发" class="headerlink" title="多进程并发"></a>多进程并发</h2><p>将应用程序分为多个<strong>独立的、单线程</strong>的进程，他们可以同时运行。</p>
+<p><img src="/2019/10/10/C-多线程（一）/并发的进程之间的通讯.png" alt="并发的进程之间的通讯"></p>
+<p>这些独立的进程可以通过常规的<strong>进程间的通讯机制</strong>进行通讯，如管道、信号、消息队列、共享内存、存储映射I/O、信号量、套接字等等。</p>
+<p>缺点：</p>
+<ul>
+<li>进程间的通讯较为复杂，速度相对线程间的通讯更慢。</li>
+<li>启动进程的开销比线程大，使用的系统资源也更多。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>进程间的通信机制相比线程更加安全。</li>
+<li>能够很容易的将一台机器上的多进程程序部署在不同的机器上。</li>
+</ul>
+<h2 id="多线程并发"><a href="#多线程并发" class="headerlink" title="多线程并发"></a>多线程并发</h2><p>线程很像轻量级的进程，但是一个进程中的所有线程都<strong>共享相同的地址空间</strong>，线程间的大部分数据都可以共享。线程间的通讯一般通过<strong>共享内存</strong>来实现。</p>
+<p>优点：</p>
+<ul>
+<li>由于可以共享数据，多线程间的通信开销比进程小得多。</li>
+<li>线程启动的比进程块，占用的资源更少。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>共享数据太过灵活，为了维护正确的共享，代码写起来比较复杂。</li>
+<li>无法部署在分布式系统上。</li>
+</ul>
+<h1 id="什么时候不用并发"><a href="#什么时候不用并发" class="headerlink" title="什么时候不用并发"></a>什么时候不用并发</h1><p>基本上，不使用并发的唯一原因就是：<strong>收入比不上成本</strong>。除非潜在的性能增益足够大或关注点分离地足够清晰，能抵消所需的额外的开发时间以及维护多线程代码的相关额外成本。</p>
+<ul>
+<li><strong>启动线程时需要固定的开销</strong>，如果线程完成的很快，那很划不来。</li>
+<li><strong>线程是有限的资源</strong>，运行太多线程可能会耗尽进程的可用内存或地址空间。</li>
+<li>运行越多的线程，操作系统就需要做越多的<strong>上下文切换</strong>，开销越大。</li>
+</ul>
+<h1 id="多线程库简介"><a href="#多线程库简介" class="headerlink" title="多线程库简介"></a>多线程库简介</h1><p>C++11中提供了多线程的标准库，提供了管理线程、保护共享数据、线程间同步操作、原子操作等类。</p>
+<p>多线程库对应的头文件是  <code>#include &lt;thread&gt;</code>，类名为<code>std::thread</code>。</p>
+<p>一个简单的串行程序如下：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function_1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm function_1()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    function_1();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这是一个典型的<strong>单进程程序</strong>，任何程序都是一个进程，<code>main()</code>函数就是其中的主线程，单个线程都是顺序执行。</p>
+<p>将上面的程序改造成多线程程序其实很简单，让 function_1()函数在另外的线程中执行：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function_1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm function_1()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function">thread <span class="title">t1</span><span class="params">(function_1)</span></span>;</span><br><span class="line">    <span class="comment">// do other things</span></span><br><span class="line">    t1.join();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>分析：</p>
+<ol>
+<li>首先，构建一个<code>std::thread</code>对象<code>t1</code>，构造的时候传递一个参数，这个参数是一个函数，这个函数就是这个线程的<strong>入口函数</strong>，函数执行完了，整个线程也就执行完了。</li>
+<li>线程创建成功后，就会<strong>立即启动</strong>，并没有一个类似<code>start</code>的函数来显示的启动线程。</li>
+<li>一旦线程开始运行，就需要显示的决定是要等待它完成（join），或者分离它让它自动运行（detach）。注意：只需要在<code>std::thread</code>对象<strong>被销毁之前</strong>作出这个决定。这个例子中，对象<code>t1</code>是栈上变量，在<code>main</code>函数执行结束后就会被销毁，所以需要在<code>main</code>函数结束之前做决定。</li>
+<li>这个例子中选择使用了<code>t1.join()</code>，主线程会一直阻塞，知道子线程完成，<code>join()</code>函数的另一个任务是回收该线程中使用的资源。</li>
+</ol>
+<p><strong>线程对象和对象内部管理的线程的生命周期并不一样</strong>， 如果线程执行的快，可能内部的线程已经结束了，但线程对象还活着，也有可能线程对象已经被析构了，内部的线程还在运行。</p>
+<p>假设<code>t1</code>线程是一个执行很慢的线程，主线程并不想等待子线程结束就结束整个任务，直接删掉<code>t1.join()</code>是不行的，程序会被终止（析构<code>t1</code>的时候会调用<code>std::terminate</code>, 程序会打印<code>terminate called without an active exception</code>)。</p>
+<p>与之对应，我们可以调用<code>t1.detach()</code>，从而将<code>t1</code>线程放在<strong>后台运行</strong>，所有权和控制权被转交给<code>C++</code>运行时库，以确保与线程相关联的资源在线程退出后能被正确的回收。参考<code>UNIX</code>的<strong>守护进程（daemon process）</strong> 的概念，这种被分离的线程称为<strong>守护线程（daemon threads）</strong>。线程被分离后，及时该线程对象被析构了，线程还是能在后台继续运行，只是由于对象被析构了，主线程不能通过对象名与这个线程进行通信。例如：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function_1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 延时500ms 为了保证test()运行结束之后才打印</span></span><br><span class="line">    <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::milliseconds(<span class="number">500</span>));</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm function_1()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function">thread <span class="title">t1</span><span class="params">(function_1)</span></span>;</span><br><span class="line">    t1.detach();</span><br><span class="line">    <span class="comment">// t1.join();</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test() finished"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    test();</span><br><span class="line">    <span class="comment">// 让主线程晚于子线程结束</span></span><br><span class="line">    <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::milliseconds(<span class="number">1000</span>));   <span class="comment">// 延时1s</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用t1.detach()时</span></span><br><span class="line"><span class="comment">// test() finished</span></span><br><span class="line"><span class="comment">// I'm function_1()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用t1.join()时</span></span><br><span class="line"><span class="comment">// I'm function_1()</span></span><br><span class="line"><span class="comment">// test() finished</span></span><br></pre></td></tr></table></figure></p>
+<p>分析：</p>
+<ol>
+<li>由于线程入口函数内部有个<code>500ms</code>的延时，所以在还没有打印的时候，<code>test()</code>已经执行完成了，<code>t1</code>已经被析构了，但是它负责的那个线程还是能够运行，这就是<code>detach()</code>的作用.</li>
+<li>如果去掉<code>main</code>函数中的<code>1s</code>延时，会发现<strong>什么都没有打印</strong>，因为主线程执行的太快，整个程序已经结束了，那个后台程序被<code>C++</code>运行时库回收了。</li>
+<li>如果将<code>t1.detach()</code>换成<code>t1.join()</code>，<code>test</code>函数会在<code>t1</code>线程执行结束之后，才会执行结束。</li>
+</ol>
+<p>一旦一个线程被分离了，就不能够再被<code>join</code>了。如果非要调用，程序就会崩溃，可以使用<code>joinable()</code>函数判断一个线程对象时候能调用<code>join()</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function">thread <span class="title">t1</span><span class="params">(function_1)</span></span>;</span><br><span class="line">    t1.detach();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(t1.joinable())</span><br><span class="line">        t1.join();</span><br><span class="line">    </span><br><span class="line">    assert(!t1.joinable());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>My First Blog</title>
+    <url>/2019/09/13/diy/</url>
+    <content><![CDATA[<p>This is my first blog. </p>
+<p>Do what I love do.</p>
+]]></content>
+  </entry>
+</search>
