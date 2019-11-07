@@ -56,19 +56,17 @@
   };
 </script>
 
-  <meta name="description" content="局部静态对象C++局部静态对象的生命周期不受块的约束，在程序的执行路径第一次经过对象定义语句时初始化，直到程序结束才被销毁。在此期间，即便是变量所在函数结束执行也不会对它产生影响。 以我之前经历作为一个例子，当时是要写一个文件读取函数，读取服务配置信息。如果没读到，就返回一个默认值。如果没有将变量 ret设为局域静态变量，那么我每调用一次GetFileString()，就要重新从文件里读配置信息。">
-<meta name="keywords" content="C++">
-<meta property="og:type" content="article">
-<meta property="og:title" content="C++局部静态对象">
-<meta property="og:url" content="http://yoursite.com/2019/10/23/C-局部静态对象/index.html">
+  <meta name="description" content="ifafa">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ifa&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/archives/2019/11/index.html">
 <meta property="og:site_name" content="ifa&#39;s Blog">
-<meta property="og:description" content="局部静态对象C++局部静态对象的生命周期不受块的约束，在程序的执行路径第一次经过对象定义语句时初始化，直到程序结束才被销毁。在此期间，即便是变量所在函数结束执行也不会对它产生影响。 以我之前经历作为一个例子，当时是要写一个文件读取函数，读取服务配置信息。如果没读到，就返回一个默认值。如果没有将变量 ret设为局域静态变量，那么我每调用一次GetFileString()，就要重新从文件里读配置信息。">
+<meta property="og:description" content="ifafa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-23T08:59:38.916Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++局部静态对象">
-<meta name="twitter:description" content="局部静态对象C++局部静态对象的生命周期不受块的约束，在程序的执行路径第一次经过对象定义语句时初始化，直到程序结束才被销毁。在此期间，即便是变量所在函数结束执行也不会对它产生影响。 以我之前经历作为一个例子，当时是要写一个文件读取函数，读取服务配置信息。如果没读到，就返回一个默认值。如果没有将变量 ret设为局域静态变量，那么我每调用一次GetFileString()，就要重新从文件里读配置信息。">
-  <link rel="canonical" href="http://yoursite.com/2019/10/23/C-局部静态对象/">
+<meta name="twitter:title" content="ifa&#39;s Blog">
+<meta name="twitter:description" content="ifafa">
+  <link rel="canonical" href="http://yoursite.com/archives/2019/11/">
 
 
 <script id="page-configurations">
@@ -76,13 +74,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
+    isPost: false,
     isPage: false,
-    isArchive: false
+    isArchive: true
   };
 </script>
 
-  <title>C++局部静态对象 | ifa's Blog</title>
+  <title>Archive | ifa's Blog</title>
   
 
 
@@ -272,116 +270,96 @@
         <div class="content-wrap">
             
 
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/C-局部静态对象/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhong ZiHao">
-      <meta itemprop="description" content="ifafa">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ifa's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">C++局部静态对象
-
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        
+        
+        
           
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-10-23 16:16:18 / Modified: 16:59:38" itemprop="dateCreated datePublished" datetime="2019-10-23T16:16:18+08:00">2019-10-23</time>
-            </span>
-          
-            
-
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+        
+        <span class="collection-header">Um..! 5 posts in total. Keep on posting.</span>
+      </div>
+      
 
       
-        <h1 id="局部静态对象"><a href="#局部静态对象" class="headerlink" title="局部静态对象"></a>局部静态对象</h1><p>C++局部静态对象的生命周期不受块的约束，在程序的执行路径<strong>第一次经过对象定义语句时初始化</strong>，直到<strong>程序结束才被销毁</strong>。在此期间，即便是变量所在函数结束执行也不会对它产生影响。</p>
-<p>以我之前经历作为一个例子，当时是要写一个文件读取函数，读取服务配置信息。如果没读到，就返回一个默认值。如果没有将变量 <code>ret</code>设为局域静态变量，那么我每调用一次GetFileString()，就要重新从文件里读配置信息。如果设置为静态变量，那么不论调用多少次，只要程序没结束，实际上就<strong>只用读一次</strong>。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">GetFileString</span><span class="params">(<span class="built_in">std</span>::sting filename)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="built_in">std</span>::<span class="built_in">string</span> ret = <span class="string">""</span>;</span><br><span class="line">  <span class="keyword">if</span> (ret.empty())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 读文件字符串赋给ret</span></span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (ret.empty())</span><br><span class="line">  &#123;</span><br><span class="line">    ret = <span class="string">"default_value"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+  
+  
+
+  
+    
+    <div class="collection-year">
+      <h1 class="collection-header">2019</h1>
     </div>
-
-    
-    
-    
-        
-      
-
-      <footer class="post-footer">
-          
-            
-          
-          <div class="post-tags">
-            
-              <a href="/tags/C/" rel="tag"># C++</a>
-            
-          </div>
-        
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-next post-nav-item">
-              
-                <a href="/2019/10/18/线程管理的基础（一）/" rel="next" title="线程管理的基础（一）">
-                  <i class="fa fa-chevron-left"></i> 线程管理的基础（一）
-                </a>
-              
-            </div>
-
-            <span class="post-nav-divider"></span>
-
-            <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/11/07/C-中string-erase-的用法/" rel="prev" title="C++中string.erase()的用法，结合string.find()写一个字符串替换函数">
-                  C++中string.erase()的用法，结合string.find()写一个字符串替换函数 <i class="fa fa-chevron-right"></i>
-                </a>
-              
-            </div>
-          </div>
-        
-      </footer>
-    
-  </div>
   
-  
-  
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/11/07/C-中string-erase-的用法/" itemprop="url">
+            <span itemprop="name">C++中string.erase()的用法，结合string.find()写一个字符串替换函数</span>
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2019-11-07T13:22:45+08:00"
+              content="2019-11-07">
+          11-07
+        </time>
+      </div>
+
+    </header>
   </article>
 
+
+
+
+    </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -400,11 +378,6 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
-        
-        
-        
-        
-      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -417,8 +390,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#局部静态对象"><span class="nav-number">1.</span> <span class="nav-text">局部静态对象</span></a></li></ol></div>
-        
       </div>
       <!--/noindex-->
 

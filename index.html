@@ -278,6 +278,100 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/C-中string-erase-的用法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhong ZiHao">
+      <meta itemprop="description" content="ifafa">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ifa's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/07/C-中string-erase-的用法/" class="post-title-link" itemprop="url">C++中string.erase()的用法，结合string.find()写一个字符串替换函数</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-11-07 13:22:45 / Modified: 15:08:27" itemprop="dateCreated datePublished" datetime="2019-11-07T13:22:45+08:00">2019-11-07</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考：<a href="https://blog.csdn.net/u010472607/article/details/80431604" target="_blank" rel="noopener">https://blog.csdn.net/u010472607/article/details/80431604</a></p>
+<p>##erase方法原型</p>
+<ol>
+<li><p><strong>basic_string &amp; erase(size_type pos=0, size_type n=npos);</strong></p>
+<p>1). <code>string.erase( pos, n );</code>    // 从给定位置 pos 开始，要删除的字符长度为n</p>
+<p>2). <code>string.erase( pos );</code>     // 从给定位置 pos开始，删除到结尾结束</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">string</span> strSource = <span class="string">"erase test! test"</span>;</span><br><span class="line">  strSource.erase(<span class="number">11</span>);	<span class="comment">// 从pos等于10开始，删除后面的字符只到结尾</span></span><br><span class="line">  											<span class="comment">// 即 " test"</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'-'</span> &lt;&lt; strSource &lt;&lt; <span class="string">'-'</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  strSource.erase(<span class="number">6</span>, <span class="number">5</span>); <span class="comment">// pos = 6， 删除pos后5个字符</span></span><br><span class="line">  											 <span class="comment">// 即 "test!"</span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'-'</span> &lt;&lt; strSource &lt;&lt; <span class="string">'-'</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p><strong>iterator erase(const_iterator position)</strong></p>
+<p>删除迭代器位置处的单个字符，并返回<code>下个元素</code>的迭代器</p>
+</li>
+<li><p><strong>iterator erase(const_iterator first, const_iterator last)</strong></p>
+<p>删除迭代器<code>[first, last)</code>区间的所有字符，返回一个指向被删除的最后一个元素的下一个字符的迭代器。 </p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">string</span> strSource = <span class="string">"erase test! test"</span>;</span><br><span class="line">  strSource.erase(strSource.begin() + <span class="number">11</span>);	<span class="comment">// 删除test前的一个空格</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'-'</span> &lt;&lt; strSource &lt;&lt; <span class="string">'-'</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  strSource.erase(strSource.begin() + <span class="number">11</span>, strSource.end()); <span class="comment">// 删除 " test!" </span></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'-'</span> &lt;&lt; strSource &lt;&lt; <span class="string">'-'</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>除了<code>erase</code>方法用于删除string中的元素，<code>void pop_back();</code>方法也可以用来删除元素，但是只能删除string的最后一个元素</p>
+<h2 id="查找方法"><a href="#查找方法" class="headerlink" title="查找方法"></a>查找方法</h2><p>在使用<code>erase</code>删除函数的时候，经常会和查找函数一起使用</p>
+<p><code>string.find()</code>方法参数可以是char或者string类型，为待查找的目标，返回值为 size_type; 当查找不到目标是，返回值为 npos。下面我用两个方法结合起来写了一个替换给定字符串中的部分字符串的方法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ReplaceString</span><span class="params">(<span class="built_in">string</span> &amp; strSource, <span class="built_in">string</span> strOld, <span class="built_in">string</span> strNew)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> idx = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> nOldLen = strOld.length();</span><br><span class="line">	<span class="keyword">int</span> nNewLen = strNew.length();</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span>* pNew = strNew.c_str();</span><br><span class="line">	<span class="keyword">bool</span> result = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		idx = strSource.find(strOld, idx);  <span class="comment">// find strOld's idx from strOld[idx]</span></span><br><span class="line">		<span class="keyword">if</span> (idx == <span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		strSource.erase(idx, nOldLen);	<span class="comment">// 从idx开始，删除后面的nOldLen个字符</span></span><br><span class="line">		strSource.insert(idx, pNew);</span><br><span class="line">		idx += nNewLen;</span><br><span class="line">		result = <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/C-局部静态对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -703,7 +797,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
