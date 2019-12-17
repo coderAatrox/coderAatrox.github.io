@@ -278,6 +278,168 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/17/LPCSTR-LPWSTR-PTSTR-LPTSTR的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhong ZiHao">
+      <meta itemprop="description" content="ifafa">
+      <meta itemprop="image" content="/source/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ifa's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/12/17/LPCSTR-LPWSTR-PTSTR-LPTSTR的区别/" class="post-title-link" itemprop="url">LPCSTR, LPWSTR, PTSTR, LPTSTR的区别</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-12-17 14:54:43 / Modified: 15:18:33" itemprop="dateCreated datePublished" datetime="2019-12-17T14:54:43+08:00">2019-12-17</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>转载于 <a href="https://blog.csdn.net/xuruoxin/article/details/21984949" target="_blank" rel="noopener">https://blog.csdn.net/xuruoxin/article/details/21984949</a></p>
+<h2 id="先来讲L、P、C、T、STR的意义"><a href="#先来讲L、P、C、T、STR的意义" class="headerlink" title="先来讲L、P、C、T、STR的意义"></a>先来讲L、P、C、T、STR的意义</h2><p><strong>L表示long指针</strong>，这是为了兼容Windows 3.1等16位操作系统遗留下来的，在win32以及其他的32位操作系统中，long和near指针及far修饰符都是为了兼容的作用，没有实际意义。即<strong>win32中，long,near,far指针与普通指针没有区别，LP与P是等效的</strong>。<br><strong>P表示这是一个指针</strong>。<br><strong>T表示_T宏</strong>， 这个宏用来表示你的字符是否使用 UNICODE，如果你的程序定义了UNICODE或者其他相关的宏，那么这个字符或者字符串将被作为UNICODE字符串，否则就是标准的ANSI字符串。<br><strong>STR表示这个变量是一个字符串</strong>。<br><strong>C表示是一个常量，const</strong>。</p>
+<p>LPTSTR:<br>如果定义了UNICODE宏则LPTSTR被定义为 LPWSTR。 <code>typedef LPTSTR LPTWSTR;</code><br>否则LPTSTR被定义位LPSTR。   <code>typedef LPTSTR LPSTR;</code></p>
+<h2 id="下面列出一些常用的typedefs："><a href="#下面列出一些常用的typedefs：" class="headerlink" title="下面列出一些常用的typedefs："></a>下面列出一些常用的typedefs：</h2><p><strong>类型  MBCS    Unicode</strong><br><code>WCHAR  wchar_t  wchar_t</code><br><code>LPSTR  char*    char*</code><br><code>LPCSTR const char*  const char*</code><br><code>LPWSTR wchar_t*    wchar_t*</code><br><code>LPCWSTR const wchar_t* const wchar_t*</code><br><code>TCHAR  char     wchar_t</code><br><code>LPTSTR TCHAR*(或char*) TCHAR*(或wchar_t*)</code><br><code>LPCTSTR const TCHAR*   const TCHAR*</code></p>
+<p>由于Win32 API文档的函数列表使用函数的常用名字（例如，SetWindowText),所有的字符串都适用TCHAR来定义的。（除了XP中引入的只适用于Unicode的API）。所以结论，在VS2005系统中，为提高可移植性，<strong>定义字符串时使用TCHAR，转化为UNICODE时用_T而不用L</strong>。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/28/名字查找与类的作用域/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhong ZiHao">
+      <meta itemprop="description" content="ifafa">
+      <meta itemprop="image" content="/source/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ifa's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/11/28/名字查找与类的作用域/" class="post-title-link" itemprop="url">名字查找与类的作用域</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2019-11-28 09:54:17 / Modified: 17:42:04" itemprop="dateCreated datePublished" datetime="2019-11-28T09:54:17+08:00">2019-11-28</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="名字查找的一般规则"><a href="#名字查找的一般规则" class="headerlink" title="名字查找的一般规则"></a>名字查找的一般规则</h2><p>名字查找（name lookup），即寻找与所用名字最匹配的声明的过程。一般分为三个步骤：</p>
+<ol>
+<li>首先，在名字所在的块中查找对应的声明语句，<strong>只考虑名字出现之前的声明</strong>。</li>
+<li>如果没找到，继续查找外层作用域。</li>
+<li>如果最终没有找到匹配的声明，则程序报错。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> nameA = <span class="number">1</span>;	<span class="comment">// 2. 在外层作用域中查找</span></span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (nameA == <span class="number">1</span>)		<span class="comment">// 1. 先在块儿中查找</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类中变量的名字查找"><a href="#类中变量的名字查找" class="headerlink" title="类中变量的名字查找"></a>类中变量的名字查找</h2><p>对于类内部的成员函数来说，查找名字的方式与一般的名字查找方式不同。在类中，定义分两步处理：</p>
+<ol>
+<li>首先，编译所有成员的声明。</li>
+<li>直到类全部可见后才编译函数体。</li>
+</ol>
+<p><strong>编译器处理完类中的全部声明后才会处理成员函数的定义</strong>。这样做的好处是，成员函数可以使用类中的任何名字。如果成员函数的定义和声明被同时处理，那么就只能在成员函数中使用已经出现过的名字。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/C-中string-erase-的用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -796,7 +958,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -805,7 +967,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
         
       </div>
