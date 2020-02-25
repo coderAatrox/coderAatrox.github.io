@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CMake教程搬运</title>
+    <url>/2020/02/25/CMake%E6%95%99%E7%A8%8B%E6%90%AC%E8%BF%90/</url>
+    <content><![CDATA[<p>参考文章：<a href="https://blog.csdn.net/zhuiyunzhugang/article/details/88142908" target="_blank" rel="noopener">https://blog.csdn.net/zhuiyunzhugang/article/details/88142908</a></p>
+<h2 id="什么是CMake"><a href="#什么是CMake" class="headerlink" title="什么是CMake"></a>什么是CMake</h2><p>你也许听过好几种Make工具，例如<code>GUN Make</code>, QT的<code>qmake</code>,微软的<code>MS nmake</code>等等。这些make工具遵循着不同的规范和标准，所执行的makefile格式也不同。这就带来一个问题，如果我们的软件想要跨平台，为了保证它在各个平台上的正确编译，必须重新为每种标准写一次Makefile，这将是一件让人抓狂的工作。</p>
+<p>CMake就是为解决上面问题所设计的工具，它允许开发者编写一种平台无关的CMakeList.txt文件来定制整个编译流程，然后再根据目标用户的平台进一步生成所需的本地化Makefile和工程文件，从而做到 “Write once, run everywhere”。</p>
+<p>在 linux 平台下使用CMake 生成 Makefile 并编译的流程如下：</p>
+<ol>
+<li>编写CMake配置文件CMakeLists.txt。</li>
+<li>执行命令 <code>cmake PATH</code>或者<code>ccmake PATH</code>生成 <code>Makefile 1 1ccmake</code>。其中，PATH是CMakeLists.txt所在的目录</li>
+<li>使用<code>make</code>命令进行编译</li>
+</ol>
+<h2 id="入门案例：单个源文件"><a href="#入门案例：单个源文件" class="headerlink" title="入门案例：单个源文件"></a>入门案例：单个源文件</h2><p>对单个的一个源文件，我们只需要写几行代码就可以了。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// main.cpp 文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printHello</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello CMake!"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	  printHello();</span><br><span class="line">  	<span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编写CMakeLists.txt</p>
+<p>首先编写CMakeLists.txt文件，并保存在与<code>main.cpp</code>源文件同个目录下：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># CMake 最低版本号要求</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">2.8</span>)</span><br><span class="line"><span class="comment"># 项目信息</span></span><br><span class="line"><span class="keyword">project</span>(Demo1)</span><br><span class="line"><span class="comment"># 指定生成目标</span></span><br><span class="line"><span class="keyword">add_executable</span>(Demo main.cpp)</span><br></pre></td></tr></table></figure>
+<p>CMakeLists.txt的语法比较简单，由命令、注释和空格组成，其中命令是不区分大小写的。符号<code>#</code>后面的内容被认为是注释。命令由<strong>命令名称、小括号和参数</strong>组成，<strong>参数之间使用空格</strong>进行间隔。</p>
+<p>对于上面的CMakeLists.txt文件，依次出现了几个命令：</p>
+<ol>
+<li><code>cmake_minimum_required</code>:指定运行此配置文件所需的CMake的最低版本；</li>
+<li><code>project</code>:参数值是Demo1，该命令表示项目的名称是Demo1。</li>
+<li><code>add_executable</code>: 将名为 main.cpp 的源文件编译成一个名称为 Demo 的可执行文件。</li>
+</ol>
+<p>编译项目</p>
+<p>之后在<strong>当前目录</strong>执行 <code>cmake.</code>，得到 Makefile后再使用 <code>make</code>命令编译得到Demo1可执行文件。</p>
+<h2 id="多个源文件"><a href="#多个源文件" class="headerlink" title="多个源文件"></a>多个源文件</h2><h3 id="同一目录，多个源文件"><a href="#同一目录，多个源文件" class="headerlink" title="同一目录，多个源文件"></a>同一目录，多个源文件</h3><p>上面的例子只有单个源文件。现在假如把<code>printHello</code>函数单独写进一个名为HelloFunctions.cpp的源文件里，是的这个工程变为如下形式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">./Demo2</span><br><span class="line">|</span><br><span class="line">+--- main.cpp</span><br><span class="line">|</span><br><span class="line">+--- HelloFunctions.cpp</span><br><span class="line">|</span><br><span class="line">+--- HelloFunctions.h</span><br></pre></td></tr></table></figure>
+<p>这个时候，CMakeLists.txt可以改为如下形式：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># CMake最低版本号要求</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">2.8</span>)</span><br><span class="line"><span class="comment"># 项目信息</span></span><br><span class="line"><span class="keyword">project</span>(Demo2)</span><br><span class="line"><span class="comment"># 指定生成目标</span></span><br><span class="line"><span class="keyword">add_executable</span>(Demo main.cpp HelloFunctions.cpp)</span><br></pre></td></tr></table></figure>
+<p>唯一的改动只是在<code>add_executable</code>命令中增加了一个 HelloFunctions.cpp 源文件。这样写当然没有什么问题，但是如果源文件很多，把所有源文件的名字都加进去将是一件烦人的工作。更省事的方法是使用 <code>aux_source_directory</code>命令，该命令会查找指定目录下的所有源文件，然后将结果存进指定变量名。其语法如下：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="keyword">aux_source_directory</span>(&lt;dir&gt;&lt;variable&gt;)</span><br></pre></td></tr></table></figure>
+<p>因此，可以修改 CMakeLists.txt如下：</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line"><span class="comment"># CMake 最低版本号要求</span></span><br><span class="line">cmake_minimum_reuquired(VERSION <span class="number">2.8</span>)</span><br><span class="line"><span class="comment"># 项目信息</span></span><br><span class="line"><span class="keyword">project</span>(Demo2)</span><br><span class="line"><span class="comment"># 查找当前目录下的所有源文件</span></span><br><span class="line"><span class="comment"># 并将名称保存到 DIR_SRCS 变量</span></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. DIR_SRCS)</span><br><span class="line"><span class="comment"># 指定生成目标</span></span><br><span class="line"><span class="keyword">add_executable</span>(Demo <span class="variable">$&#123;DIR_SRCS&#125;</span>)</span><br></pre></td></tr></table></figure>
+<p>这样，CMake会将当前目录所有源文件的文件名赋值给变量 DIR_SRCS，再指示给变量 DIR_SRCS中的源文件需要编译成一个名称为Demo的可执行文件</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>利用sleep()实现定时抓取</title>
+    <url>/2020/01/10/%E5%88%A9%E7%94%A8sleep-%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E6%8A%93%E5%8F%96/</url>
+    <content><![CDATA[<p><strong>最近工作要求用实现一个功能线程，要求定时从Redis里读取数据并处理。正好学习下线程编程。</strong><br>直接上代码:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*====================</span></span><br><span class="line"><span class="comment">    Redis数据处理类</span></span><br><span class="line"><span class="comment">=====================*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CReadRedis</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    CReadRedis()</span><br><span class="line">    ~CReadRedis();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Stop</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> __<span class="function">stdcall <span class="title">ReadRedisThreadProc</span><span class="params">( <span class="keyword">void</span> *lp )</span></span>; <span class="comment">//读数据线程</span></span><br><span class="line">    <span class="keyword">void</span>* m_hThread;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">bool</span> m_Exit;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; m_dataInfo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">ConnectRedis</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">ReleaseRedis</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*====================</span></span><br><span class="line"><span class="comment">读Redis线程</span></span><br><span class="line"><span class="comment">=====================*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ReadRedisThreadProc</span><span class="params">(<span class="keyword">void</span>* lp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    CReadRedis *pThis = (CReadRedis* )lp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (pThis)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            wait(<span class="number">1000</span>, m_bExit);  <span class="comment">// 每隔1s刷一次数据</span></span><br><span class="line">            <span class="keyword">if</span> (m_bExit)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//定时去获取Redis里的线程</span></span><br><span class="line">            <span class="comment">//·········</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>利用boost.asio实现get和post请求</title>
     <url>/2019/12/26/%E5%88%A9%E7%94%A8boost-asio%E5%AE%9E%E7%8E%B0get%E5%92%8Cpost%E8%AF%B7%E6%B1%82/</url>
     <content><![CDATA[<p>本文转载自 <a href="http://blog.csdn.net/duzixi" target="_blank" rel="noopener">http://blog.csdn.net/duzixi</a></p>

@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="名字查找的一般规则名字查找（name lookup），即寻找与所用名字最匹配的声明的过程。一般分为三个步骤：  首先，在名字所在的块中查找对应的声明语句，只考虑名字出现之前的声明。 如果没找到，继续查找外层作用域。 如果最终没有找到匹配的声明，则程序报错。  123456789101112int main()&amp;#123;  int nameA = 1;	// 2. 在外层作用域中查找  while">
+  <meta name="description" content="参考文章：https://blog.csdn.net/zhuiyunzhugang/article/details/88142908 什么是CMake你也许听过好几种Make工具，例如GUN Make, QT的qmake,微软的MS nmake等等。这些make工具遵循着不同的规范和标准，所执行的makefile格式也不同。这就带来一个问题，如果我们的软件想要跨平台，为了保证它在各个平台上的正确编">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="名字查找与类的作用域">
-<meta property="og:url" content="http://yoursite.com/2019/11/28/名字查找与类的作用域/index.html">
+<meta property="og:title" content="CMake教程搬运">
+<meta property="og:url" content="http://yoursite.com/2020/02/25/CMake教程搬运/index.html">
 <meta property="og:site_name" content="ifa&#39;s Blog">
-<meta property="og:description" content="名字查找的一般规则名字查找（name lookup），即寻找与所用名字最匹配的声明的过程。一般分为三个步骤：  首先，在名字所在的块中查找对应的声明语句，只考虑名字出现之前的声明。 如果没找到，继续查找外层作用域。 如果最终没有找到匹配的声明，则程序报错。  123456789101112int main()&amp;#123;  int nameA = 1;	// 2. 在外层作用域中查找  while">
+<meta property="og:description" content="参考文章：https://blog.csdn.net/zhuiyunzhugang/article/details/88142908 什么是CMake你也许听过好几种Make工具，例如GUN Make, QT的qmake,微软的MS nmake等等。这些make工具遵循着不同的规范和标准，所执行的makefile格式也不同。这就带来一个问题，如果我们的软件想要跨平台，为了保证它在各个平台上的正确编">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-28T09:42:04.948Z">
+<meta property="og:updated_time" content="2020-02-25T03:02:08.434Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="名字查找与类的作用域">
-<meta name="twitter:description" content="名字查找的一般规则名字查找（name lookup），即寻找与所用名字最匹配的声明的过程。一般分为三个步骤：  首先，在名字所在的块中查找对应的声明语句，只考虑名字出现之前的声明。 如果没找到，继续查找外层作用域。 如果最终没有找到匹配的声明，则程序报错。  123456789101112int main()&amp;#123;  int nameA = 1;	// 2. 在外层作用域中查找  while">
-  <link rel="canonical" href="http://yoursite.com/2019/11/28/名字查找与类的作用域/">
+<meta name="twitter:title" content="CMake教程搬运">
+<meta name="twitter:description" content="参考文章：https://blog.csdn.net/zhuiyunzhugang/article/details/88142908 什么是CMake你也许听过好几种Make工具，例如GUN Make, QT的qmake,微软的MS nmake等等。这些make工具遵循着不同的规范和标准，所执行的makefile格式也不同。这就带来一个问题，如果我们的软件想要跨平台，为了保证它在各个平台上的正确编">
+  <link rel="canonical" href="http://yoursite.com/2020/02/25/CMake教程搬运/">
 
 
 <script id="page-configurations">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>名字查找与类的作用域 | ifa's Blog</title>
+  <title>CMake教程搬运 | ifa's Blog</title>
   
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/28/名字查找与类的作用域/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/25/CMake教程搬运/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhong ZiHao">
@@ -293,7 +293,7 @@
       <meta itemprop="name" content="ifa's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">名字查找与类的作用域
+        <h1 class="post-title" itemprop="name headline">CMake教程搬运
 
           
         </h1>
@@ -309,7 +309,7 @@
                 
               
 
-              <time title="Created: 2019-11-28 09:54:17 / Modified: 17:42:04" itemprop="dateCreated datePublished" datetime="2019-11-28T09:54:17+08:00">2019-11-28</time>
+              <time title="Created: 2020-02-25 08:51:59 / Modified: 11:02:08" itemprop="dateCreated datePublished" datetime="2020-02-25T08:51:59+08:00">2020-02-25</time>
             </span>
           
             
@@ -328,19 +328,38 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="名字查找的一般规则"><a href="#名字查找的一般规则" class="headerlink" title="名字查找的一般规则"></a>名字查找的一般规则</h2><p>名字查找（name lookup），即寻找与所用名字最匹配的声明的过程。一般分为三个步骤：</p>
+        <p>参考文章：<a href="https://blog.csdn.net/zhuiyunzhugang/article/details/88142908" target="_blank" rel="noopener">https://blog.csdn.net/zhuiyunzhugang/article/details/88142908</a></p>
+<h2 id="什么是CMake"><a href="#什么是CMake" class="headerlink" title="什么是CMake"></a>什么是CMake</h2><p>你也许听过好几种Make工具，例如<code>GUN Make</code>, QT的<code>qmake</code>,微软的<code>MS nmake</code>等等。这些make工具遵循着不同的规范和标准，所执行的makefile格式也不同。这就带来一个问题，如果我们的软件想要跨平台，为了保证它在各个平台上的正确编译，必须重新为每种标准写一次Makefile，这将是一件让人抓狂的工作。</p>
+<p>CMake就是为解决上面问题所设计的工具，它允许开发者编写一种平台无关的CMakeList.txt文件来定制整个编译流程，然后再根据目标用户的平台进一步生成所需的本地化Makefile和工程文件，从而做到 “Write once, run everywhere”。</p>
+<p>在 linux 平台下使用CMake 生成 Makefile 并编译的流程如下：</p>
 <ol>
-<li>首先，在名字所在的块中查找对应的声明语句，<strong>只考虑名字出现之前的声明</strong>。</li>
-<li>如果没找到，继续查找外层作用域。</li>
-<li>如果最终没有找到匹配的声明，则程序报错。</li>
+<li>编写CMake配置文件CMakeLists.txt。</li>
+<li>执行命令 <code>cmake PATH</code>或者<code>ccmake PATH</code>生成 <code>Makefile 1 1ccmake</code>。其中，PATH是CMakeLists.txt所在的目录</li>
+<li>使用<code>make</code>命令进行编译</li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> nameA = <span class="number">1</span>;	<span class="comment">// 2. 在外层作用域中查找</span></span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (nameA == <span class="number">1</span>)		<span class="comment">// 1. 先在块儿中查找</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="类中变量的名字查找"><a href="#类中变量的名字查找" class="headerlink" title="类中变量的名字查找"></a>类中变量的名字查找</h2><p>对于类内部的成员函数来说，查找名字的方式与一般的名字查找方式不同。在类中，定义分两步处理：</p>
+<h2 id="入门案例：单个源文件"><a href="#入门案例：单个源文件" class="headerlink" title="入门案例：单个源文件"></a>入门案例：单个源文件</h2><p>对单个的一个源文件，我们只需要写几行代码就可以了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.cpp 文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printHello</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello CMake!"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	  printHello();</span><br><span class="line">  	<span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编写CMakeLists.txt</p>
+<p>首先编写CMakeLists.txt文件，并保存在与<code>main.cpp</code>源文件同个目录下：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CMake 最低版本号要求</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">2.8</span>)</span><br><span class="line"><span class="comment"># 项目信息</span></span><br><span class="line"><span class="keyword">project</span>(Demo1)</span><br><span class="line"><span class="comment"># 指定生成目标</span></span><br><span class="line"><span class="keyword">add_executable</span>(Demo main.cpp)</span><br></pre></td></tr></table></figure>
+<p>CMakeLists.txt的语法比较简单，由命令、注释和空格组成，其中命令是不区分大小写的。符号<code>#</code>后面的内容被认为是注释。命令由<strong>命令名称、小括号和参数</strong>组成，<strong>参数之间使用空格</strong>进行间隔。</p>
+<p>对于上面的CMakeLists.txt文件，依次出现了几个命令：</p>
 <ol>
-<li>首先，编译所有成员的声明。</li>
-<li>直到类全部可见后才编译函数体。</li>
+<li><code>cmake_minimum_required</code>:指定运行此配置文件所需的CMake的最低版本；</li>
+<li><code>project</code>:参数值是Demo1，该命令表示项目的名称是Demo1。</li>
+<li><code>add_executable</code>: 将名为 main.cpp 的源文件编译成一个名称为 Demo 的可执行文件。</li>
 </ol>
-<p><strong>编译器处理完类中的全部声明后才会处理成员函数的定义</strong>。这样做的好处是，成员函数可以使用类中的任何名字。如果成员函数的定义和声明被同时处理，那么就只能在成员函数中使用已经出现过的名字。</p>
+<p>编译项目</p>
+<p>之后在<strong>当前目录</strong>执行 <code>cmake.</code>，得到 Makefile后再使用 <code>make</code>命令编译得到Demo1可执行文件。</p>
+<h2 id="多个源文件"><a href="#多个源文件" class="headerlink" title="多个源文件"></a>多个源文件</h2><h3 id="同一目录，多个源文件"><a href="#同一目录，多个源文件" class="headerlink" title="同一目录，多个源文件"></a>同一目录，多个源文件</h3><p>上面的例子只有单个源文件。现在假如把<code>printHello</code>函数单独写进一个名为HelloFunctions.cpp的源文件里，是的这个工程变为如下形式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">./Demo2</span><br><span class="line">|</span><br><span class="line">+--- main.cpp</span><br><span class="line">|</span><br><span class="line">+--- HelloFunctions.cpp</span><br><span class="line">|</span><br><span class="line">+--- HelloFunctions.h</span><br></pre></td></tr></table></figure>
+<p>这个时候，CMakeLists.txt可以改为如下形式：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CMake最低版本号要求</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">2.8</span>)</span><br><span class="line"><span class="comment"># 项目信息</span></span><br><span class="line"><span class="keyword">project</span>(Demo2)</span><br><span class="line"><span class="comment"># 指定生成目标</span></span><br><span class="line"><span class="keyword">add_executable</span>(Demo main.cpp HelloFunctions.cpp)</span><br></pre></td></tr></table></figure>
+<p>唯一的改动只是在<code>add_executable</code>命令中增加了一个 HelloFunctions.cpp 源文件。这样写当然没有什么问题，但是如果源文件很多，把所有源文件的名字都加进去将是一件烦人的工作。更省事的方法是使用 <code>aux_source_directory</code>命令，该命令会查找指定目录下的所有源文件，然后将结果存进指定变量名。其语法如下：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">aux_source_directory</span>(&lt;dir&gt;&lt;variable&gt;)</span><br></pre></td></tr></table></figure>
+<p>因此，可以修改 CMakeLists.txt如下：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CMake 最低版本号要求</span></span><br><span class="line">cmake_minimum_reuquired(VERSION <span class="number">2.8</span>)</span><br><span class="line"><span class="comment"># 项目信息</span></span><br><span class="line"><span class="keyword">project</span>(Demo2)</span><br><span class="line"><span class="comment"># 查找当前目录下的所有源文件</span></span><br><span class="line"><span class="comment"># 并将名称保存到 DIR_SRCS 变量</span></span><br><span class="line"><span class="keyword">aux_source_directory</span>(. DIR_SRCS)</span><br><span class="line"><span class="comment"># 指定生成目标</span></span><br><span class="line"><span class="keyword">add_executable</span>(Demo <span class="variable">$&#123;DIR_SRCS&#125;</span>)</span><br></pre></td></tr></table></figure>
+<p>这样，CMake会将当前目录所有源文件的文件名赋值给变量 DIR_SRCS，再指示给变量 DIR_SRCS中的源文件需要编译成一个名称为Demo的可执行文件</p>
 
     </div>
 
@@ -366,8 +385,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/11/07/C-中string-erase-的用法/" rel="next" title="C++中string.erase()的用法，结合string.find()写一个字符串替换函数">
-                  <i class="fa fa-chevron-left"></i> C++中string.erase()的用法，结合string.find()写一个字符串替换函数
+                <a href="/2020/01/10/利用sleep-实现定时抓取/" rel="next" title="利用sleep()实现定时抓取">
+                  <i class="fa fa-chevron-left"></i> 利用sleep()实现定时抓取
                 </a>
               
             </div>
@@ -375,10 +394,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/12/17/LPCSTR-LPWSTR-PTSTR-LPTSTR的区别/" rel="prev" title="LPCSTR, LPWSTR, PTSTR, LPTSTR的区别">
-                  LPCSTR, LPWSTR, PTSTR, LPTSTR的区别 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -427,7 +442,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#名字查找的一般规则"><span class="nav-number">1.</span> <span class="nav-text">名字查找的一般规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类中变量的名字查找"><span class="nav-number">2.</span> <span class="nav-text">类中变量的名字查找</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是CMake"><span class="nav-number">1.</span> <span class="nav-text">什么是CMake</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#入门案例：单个源文件"><span class="nav-number">2.</span> <span class="nav-text">入门案例：单个源文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多个源文件"><span class="nav-number">3.</span> <span class="nav-text">多个源文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同一目录，多个源文件"><span class="nav-number">3.1.</span> <span class="nav-text">同一目录，多个源文件</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

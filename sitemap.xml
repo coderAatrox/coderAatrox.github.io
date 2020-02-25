@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/02/25/CMake%E6%95%99%E7%A8%8B%E6%90%AC%E8%BF%90/</loc>
+    
+    <lastmod>2020-02-25T03:02:08.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/10/%E5%88%A9%E7%94%A8sleep-%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E6%8A%93%E5%8F%96/</loc>
+    
+    <lastmod>2020-02-16T04:18:34.057Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/12/26/%E5%88%A9%E7%94%A8boost-asio%E5%AE%9E%E7%8E%B0get%E5%92%8Cpost%E8%AF%B7%E6%B1%82/</loc>
     
     <lastmod>2019-12-26T05:47:32.453Z</lastmod>
