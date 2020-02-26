@@ -56,17 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="ifafa">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ifa&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/02/index.html">
+  <meta name="description" content="pig-config 详解转载自：https://blog.csdn.net/newchenxf/article/details/51750239 最近在学习libuv，mac上安装了libuv后发现怎么用它是个难题。因为本人是打算用vscode来写一写C++的一些小demo的。然后发现一篇在mac上配置opencv并用vscode调试C++的博文，受到了启发，然后发现了pkg-config这个好">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pkg-config 详解">
+<meta property="og:url" content="http://yoursite.com/2020/02/26/pkg-config-详解/index.html">
 <meta property="og:site_name" content="ifa&#39;s Blog">
-<meta property="og:description" content="ifafa">
+<meta property="og:description" content="pig-config 详解转载自：https://blog.csdn.net/newchenxf/article/details/51750239 最近在学习libuv，mac上安装了libuv后发现怎么用它是个难题。因为本人是打算用vscode来写一写C++的一些小demo的。然后发现一篇在mac上配置opencv并用vscode调试C++的博文，受到了启发，然后发现了pkg-config这个好">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-26T12:40:49.802Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ifa&#39;s Blog">
-<meta name="twitter:description" content="ifafa">
-  <link rel="canonical" href="http://yoursite.com/archives/2020/02/">
+<meta name="twitter:title" content="pkg-config 详解">
+<meta name="twitter:description" content="pig-config 详解转载自：https://blog.csdn.net/newchenxf/article/details/51750239 最近在学习libuv，mac上安装了libuv后发现怎么用它是个难题。因为本人是打算用vscode来写一写C++的一些小demo的。然后发现一篇在mac上配置opencv并用vscode调试C++的博文，受到了启发，然后发现了pkg-config这个好">
+  <link rel="canonical" href="http://yoursite.com/2020/02/26/pkg-config-详解/">
 
 
 <script id="page-configurations">
@@ -74,13 +76,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>Archive | ifa's Blog</title>
+  <title>pkg-config 详解 | ifa's Blog</title>
   
 
 
@@ -270,125 +272,158 @@
         <div class="content-wrap">
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        
-        
-        
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/26/pkg-config-详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhong ZiHao">
+      <meta itemprop="description" content="ifafa">
+      <meta itemprop="image" content="/source/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ifa's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">pkg-config 详解
+
           
-        
-        <span class="collection-header">Um..! 11 posts in total. Keep on posting.</span>
-      </div>
-      
+        </h1>
 
-      
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
 
-  
-  
+              
+                
+              
 
-  
+              <time title="Created: 2020-02-26 20:01:47 / Modified: 20:40:49" itemprop="dateCreated datePublished" datetime="2020-02-26T20:01:47+08:00">2020-02-26</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
     
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
-    </div>
-  
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2020/02/26/pkg-config-详解/" itemprop="url">
-            <span itemprop="name">pkg-config 详解</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-26T20:01:47+08:00"
-              content="2020-02-26">
-          02-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2020/02/25/CMake教程搬运/" itemprop="url">
-            <span itemprop="name">CMake教程搬运</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-25T08:51:59+08:00"
-              content="2020-02-25">
-          02-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+      
+        <h2 id="pig-config-详解"><a href="#pig-config-详解" class="headerlink" title="pig-config 详解"></a>pig-config 详解</h2><p>转载自：<a href="https://blog.csdn.net/newchenxf/article/details/51750239" target="_blank" rel="noopener">https://blog.csdn.net/newchenxf/article/details/51750239</a></p>
+<p>最近在学习libuv，mac上安装了libuv后发现怎么用它是个难题。因为本人是打算用vscode来写一写C++的一些小demo的。然后发现一篇在mac上配置opencv并用vscode调试C++的博文，受到了启发，然后发现了pkg-config这个好宝贝。现在转载一些pkg-config的用法，方便以后查阅。</p>
+<ol>
+<li><p><strong>什么是pkg-config？</strong></p>
+<p>pkg-config 是一个linux下的命令，用于获得某一个库/模块的所有编译相关的信息</p>
+</li>
+<li><p><strong>为什么要有pkg-config?</strong></p>
+<p>   <code>pkg-config [Your-LIB] --libs --cflags</code>可以得到你想要的lib库的头文件和库信息</p>
+</li>
+<li><p><strong>pkg-config的信息从哪里来？</strong></p>
+<p> 有两种路径：</p>
+<p> 1） 取系统的 <code>/usr/lib</code>下的所有<code>*.pc</code>文件</p>
+<p> 2）<code>PKG_CONFIG_PATH</code>环境变量所指向的路径下的所有 *.pc文件</p>
+<p> 这些pc文件什么时候有的？都是在你安装某个库/模块的的时候添加的。</p>
+</li>
+<li><p><strong>pkg-config -help查看命令参数</strong></p>
+<p> 1）<code>pkg-config [NAME] -cflags</code> 查看头文件信息</p>
+<p> 2）<code>pkg-config [NAME] -libs</code> 查看库信息</p>
+<p> 3）<code>pkg-config --list-all</code> 查看pkg-config的所有模块信息</p>
+</li>
+<li><p><strong>如何添加自己的pc文件</strong></p>
+<p> 有两种方式</p>
+<p> 1）把你的pc文件，直接放到<code>/usr/lib/...</code>默认路径下</p>
+<p> 2）把你的pc文件的路径写到 <code>PKG_CONFIG_PATH</code>环境变量里。</p>
+<p> 比如你可以在<code>/etc/.bashrc</code> 或者 <code>/home/Carrie/.bashrc</code>的文件末尾添加</p>
+<p>  <code>PKG_CONFIG_PATH = $PKG_CONFIG_PATH:/home/Carrie/ffmpeg_build/lib/pkgconfig</code></p>
+<p>  <code>export PKG_CONFIG_PATH</code></p>
+<p> 那么，pkg-config就会到/home/Carrie/ffmpeg_build/lib/pkgconfig下寻找 *.pc文件</p>
+</li>
+<li><p><strong>如何写自己的pkg-config的pc文件</strong></p>
+<p>先提一下pc文件的所有参数：</p>
+<p><code>Name</code>: 该模块的的名字，比如你的pc名字是 xxx.pc，那么名字最好也是 xxx。</p>
+<p><code>Description</code>:模块的简单描述。上文pkg-config –list-all 命令出来的结果，每个名字后面就是description。</p>
+<p><code>URL</code>: 用户可以通过该URL获得更多信息，或者下载信息。也是辅助的，可要可不要。</p>
+<p><code>Version</code>：版本号。</p>
+<p><code>Requires</code>:该模块是否依赖于其他模块。一般没有。</p>
+<p><code>Requires.private</code>:该模块是否依赖于其他模块。并且还不需要第三方知道的。一般也没有。</p>
+<p><code>Confilcts</code>:有没有和别的模块冲突，常用于版本冲突。比如，Conflicts: bar &lt; 1.2.3，表示和 bar模块的1.2.3以下的版本有冲突。</p>
+<p><code>Cflags</code>: 这个就很重要了，pkg-config的参数-cflags就指向这里。<strong>主要用于写本模块的头文件的路径。</strong></p>
+<p><code>Libs</code>:也很重要，pkg-config的参数-libs就指向这里。主要用于写本模块的库/依赖库的路径。</p>
+<p><code>Libs.private</code>：本模块依赖的库，但不需要第三方知道。</p>
+<p>其实必须写的有五个：<strong>Name, Description, Version, Cflags, Libs</strong>。</p>
+<p>这里列举两个例子，一个动态库的，一个静态库的。</p>
+<h3 id="eg1-动态库的pc文件"><a href="#eg1-动态库的pc文件" class="headerlink" title="eg1 动态库的pc文件"></a>eg1 动态库的pc文件</h3><p>假设我写了libfoo.so，我的库将会被安装到/usr/local/lib/，头文件会放到/usr/local/include/foo。那么，pc文件可以这么写。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">prefix=/usr/local</span><br><span class="line">exec_prefix=$&#123;prefix&#125;</span><br><span class="line">includedir=$&#123;prefix&#125;/include</span><br><span class="line">libdir=$&#123;exec_prefix&#125;/lib</span><br><span class="line"></span><br><span class="line">Name:foo</span><br><span class="line">Description: The foo library</span><br><span class="line">Version:1.0.0</span><br><span class="line">Cflags:-I$&#123;includedir&#125;/foo</span><br><span class="line">Libs:-L$&#123;libdir&#125; -lfoo</span><br></pre></td></tr></table></figure>
+<h3 id="eg2静态库的pc文件"><a href="#eg2静态库的pc文件" class="headerlink" title="eg2静态库的pc文件"></a>eg2静态库的pc文件</h3><p>静态库链接动态库时，如何使用该静态库，如果我有个静态库libXXX.a，它依赖了很多其他的动态库libAA.so, libBB.so，那么第三方程序DD.c要使用libXXX.a时，编译时还得链接libAA.so，libBB.so。如何让第三方程序，可以不用操心我这个libXXX.a到底依赖了什么？很简单，就是我的libXXX.a写一个pc文件。</p>
+<p>这里原作者是写了一个他使用ffmpeg的例子。我打算等我先整清楚libuv怎么配置的，再回来附上libuv的pc文件。</p>
+</li>
+</ol>
 
     </div>
+
+    
+    
+    
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/C/" rel="tag"># C++</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/02/25/CMake教程搬运/" rel="next" title="CMake教程搬运">
+                  <i class="fa fa-chevron-left"></i> CMake教程搬运
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
   </div>
   
   
   
+  </article>
 
-  
-
+  </div>
 
 
           </div>
@@ -407,6 +442,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -419,6 +459,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pig-config-详解"><span class="nav-number">1.</span> <span class="nav-text">pig-config 详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#eg1-动态库的pc文件"><span class="nav-number">1.1.</span> <span class="nav-text">eg1 动态库的pc文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eg2静态库的pc文件"><span class="nav-number">1.2.</span> <span class="nav-text">eg2静态库的pc文件</span></a></li></ol></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
