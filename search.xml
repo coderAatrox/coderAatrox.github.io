@@ -13,7 +13,10 @@
 <li><strong>配接器（adapters）</strong>：一种用来修饰容器（containers）或仿函数（functors）或迭代器（iterators）接口的东西。例如，STL提供的<code>queue</code>和<code>stack</code>，虽然看似容器，其实只能算是一种容器配接器，因为它们底部完全借助<code>deque</code>，所有操作都由底层的deque供应。改变<code>functor</code>接口者，称为<code>functor adapter</code>；改变<code>containers</code>接口者，称为<code>container adapter</code>；改变<code>iterator</code>接口者，称为<code>iterator adapter</code>。</li>
 <li><strong>配置器（allocators）：</strong>负责空间配置与管理。从实现角度来看，配置器是实现了一个动态空间配置、空间管理、空间释放的<code>class template</code>。</li>
 </ol>
-]]></content>
+<p>图1-1是STL六大组件的交互图</p>
+<p><img src="/2020/02/27/STL六大组件功能与应用/STL六大组件之间的交互关系.png" alt="STL六大组件之间的交互关系"></p>
+<pre><code>其中，Container 通过 Allocator 取得数据存储空间，Algorithm 通过 Iterator 存取 Container的内容，Functor 可以协助 Algorithm 完成不同的策略变化，Adapter可以修饰或套接 Functor。
+</code></pre>]]></content>
       <tags>
         <tag>STL</tag>
       </tags>
