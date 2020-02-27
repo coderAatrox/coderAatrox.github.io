@@ -56,17 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="ifafa">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ifa&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="前言，最近想沉下来，学习一下常见容器的底层实现方法，那肯定是不能错过《STL源码剖析》这本经典的书了。我打算在我的博客新建一个STL栏，用来记录从这本书里学到的内容，便于以后温故时习之。 STL六大组件功能与应用介绍STL提供了六大组件，下面将简单介绍一下这六大组件是什么。（PS：主要是书中前言对他们的概述，后期学的更深入了后会再回来补充）  容器（containers）：各种数据结构，如vect">
+<meta name="keywords" content="STL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL六大组件功能与应用">
+<meta property="og:url" content="http://yoursite.com/2020/02/27/STL六大组件功能与应用/index.html">
 <meta property="og:site_name" content="ifa&#39;s Blog">
-<meta property="og:description" content="ifafa">
+<meta property="og:description" content="前言，最近想沉下来，学习一下常见容器的底层实现方法，那肯定是不能错过《STL源码剖析》这本经典的书了。我打算在我的博客新建一个STL栏，用来记录从这本书里学到的内容，便于以后温故时习之。 STL六大组件功能与应用介绍STL提供了六大组件，下面将简单介绍一下这六大组件是什么。（PS：主要是书中前言对他们的概述，后期学的更深入了后会再回来补充）  容器（containers）：各种数据结构，如vect">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-27T14:07:29.158Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ifa&#39;s Blog">
-<meta name="twitter:description" content="ifafa">
-  <link rel="canonical" href="http://yoursite.com/archives/">
+<meta name="twitter:title" content="STL六大组件功能与应用">
+<meta name="twitter:description" content="前言，最近想沉下来，学习一下常见容器的底层实现方法，那肯定是不能错过《STL源码剖析》这本经典的书了。我打算在我的博客新建一个STL栏，用来记录从这本书里学到的内容，便于以后温故时习之。 STL六大组件功能与应用介绍STL提供了六大组件，下面将简单介绍一下这六大组件是什么。（PS：主要是书中前言对他们的概述，后期学的更深入了后会再回来补充）  容器（containers）：各种数据结构，如vect">
+  <link rel="canonical" href="http://yoursite.com/2020/02/27/STL六大组件功能与应用/">
 
 
 <script id="page-configurations">
@@ -74,13 +76,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>Archive | ifa's Blog</title>
+  <title>STL六大组件功能与应用 | ifa's Blog</title>
   
 
 
@@ -270,365 +272,119 @@
         <div class="content-wrap">
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        
-        
-        
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/27/STL六大组件功能与应用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhong ZiHao">
+      <meta itemprop="description" content="ifafa">
+      <meta itemprop="image" content="/source/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ifa's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">STL六大组件功能与应用
+
           
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-02-27 21:04:42 / Modified: 22:07:29" itemprop="dateCreated datePublished" datetime="2020-02-27T21:04:42+08:00">2020-02-27</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前言，最近想沉下来，学习一下常见容器的底层实现方法，那肯定是不能错过《STL源码剖析》这本经典的书了。我打算在我的博客新建一个STL栏，用来记录从这本书里学到的内容，便于以后温故时习之。</p>
+<h2 id="STL六大组件功能与应用介绍"><a href="#STL六大组件功能与应用介绍" class="headerlink" title="STL六大组件功能与应用介绍"></a>STL六大组件功能与应用介绍</h2><p>STL提供了六大组件，下面将简单介绍一下这六大组件是什么。（PS：主要是书中前言对他们的概述，后期学的更深入了后会再回来补充）</p>
+<ol>
+<li><strong>容器（containers）</strong>：各种数据结构，如<code>vector</code>，<code>list</code>，<code>deque</code>，<code>set</code>，<code>map</code>用来存放数据。也可以主要分为两大类：序列容器（sequence container）和关联容器（associative container）。从实现角度来看，STL容器是一种<code>class template</code>。</li>
+<li><strong>算法（algorithms）</strong>：各种常用的算法如 <code>sort</code>，<code>search</code>，<code>copy</code>，<code>erase</code>···。从实现角度来看，STL算法是一种<code>function template</code>。</li>
+<li><strong>迭代器（iterator）：</strong>扮演容器与算法之间的胶合剂，是所谓的泛型指针，详见第三章。共有五种类型，以及其它衍生变化。从实现角度来看，迭代器是一种将 <code>operator*</code>，<code>operator-&gt;</code>，<code>operator++</code>，<code>operator--</code>等指针相关操作予以重载的<code>class template</code>。所有的STL容器都附带有自己的专属迭代器。</li>
+<li><strong>仿函数（functors）：</strong>行为类似函数，可作为算法的某种策略（policy）。从实现的角度来看，仿函数是一种重载了<code>operator()</code>的<code>class</code>或<code>class template</code>。</li>
+<li><strong>配接器（adapters）</strong>：一种用来修饰容器（containers）或仿函数（functors）或迭代器（iterators）接口的东西。例如，STL提供的<code>queue</code>和<code>stack</code>，虽然看似容器，其实只能算是一种容器配接器，因为它们底部完全借助<code>deque</code>，所有操作都由底层的deque供应。改变<code>functor</code>接口者，称为<code>functor adapter</code>；改变<code>containers</code>接口者，称为<code>container adapter</code>；改变<code>iterator</code>接口者，称为<code>iterator adapter</code>。</li>
+<li><strong>配置器（allocators）：</strong>负责空间配置与管理。从实现角度来看，配置器是实现了一个动态空间配置、空间管理、空间释放的<code>class template</code>。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
         
-        <span class="collection-header">Um..! 12 posts in total. Keep on posting.</span>
-      </div>
       
 
-      
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/STL/" rel="tag"># STL</a>
+            
+          </div>
+        
 
-  
-  
+        
 
-  
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2020/02/26/pkg-config-详解/" rel="next" title="pkg-config 详解">
+                  <i class="fa fa-chevron-left"></i> pkg-config 详解
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
     
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
-    </div>
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2020/02/27/STL六大组件功能与应用/" itemprop="url">
-            <span itemprop="name">STL六大组件功能与应用</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-27T21:04:42+08:00"
-              content="2020-02-27">
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2020/02/26/pkg-config-详解/" itemprop="url">
-            <span itemprop="name">pkg-config 详解</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-26T20:01:47+08:00"
-              content="2020-02-26">
-          02-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2020/02/25/CMake教程搬运/" itemprop="url">
-            <span itemprop="name">CMake教程搬运</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-25T08:51:59+08:00"
-              content="2020-02-25">
-          02-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2020/01/10/利用sleep-实现定时抓取/" itemprop="url">
-            <span itemprop="name">利用sleep()实现定时抓取</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-01-10T10:35:56+08:00"
-              content="2020-01-10">
-          01-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-    
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/12/26/利用boost-asio实现get和post请求/" itemprop="url">
-            <span itemprop="name">利用boost.asio实现get和post请求</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-12-26T10:43:20+08:00"
-              content="2019-12-26">
-          12-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/12/17/LPCSTR-LPWSTR-PTSTR-LPTSTR的区别/" itemprop="url">
-            <span itemprop="name">LPCSTR, LPWSTR, PTSTR, LPTSTR的区别</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-12-17T14:54:43+08:00"
-              content="2019-12-17">
-          12-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/11/28/名字查找与类的作用域/" itemprop="url">
-            <span itemprop="name">名字查找与类的作用域</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-28T09:54:17+08:00"
-              content="2019-11-28">
-          11-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/11/07/C-中string-erase-的用法/" itemprop="url">
-            <span itemprop="name">C++中string.erase()的用法，结合string.find()写一个字符串替换函数</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-07T13:22:45+08:00"
-              content="2019-11-07">
-          11-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/10/23/C-局部静态对象/" itemprop="url">
-            <span itemprop="name">C++局部静态对象</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-10-23T16:16:18+08:00"
-              content="2019-10-23">
-          10-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-  
-  
-
-  
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/10/18/线程管理的基础（一）/" itemprop="url">
-            <span itemprop="name">线程管理的基础（一）</span>
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-10-18T13:30:55+08:00"
-              content="2019-10-18">
-          10-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-
-    </div>
   </div>
   
   
   
+  </article>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -647,6 +403,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -659,6 +420,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#STL六大组件功能与应用介绍"><span class="nav-number">1.</span> <span class="nav-text">STL六大组件功能与应用介绍</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 

@@ -278,6 +278,88 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/27/STL六大组件功能与应用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhong ZiHao">
+      <meta itemprop="description" content="ifafa">
+      <meta itemprop="image" content="/source/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ifa's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/02/27/STL六大组件功能与应用/" class="post-title-link" itemprop="url">STL六大组件功能与应用</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              
+                
+              
+
+              <time title="Created: 2020-02-27 21:04:42 / Modified: 22:07:29" itemprop="dateCreated datePublished" datetime="2020-02-27T21:04:42+08:00">2020-02-27</time>
+            </span>
+          
+            
+
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>前言，最近想沉下来，学习一下常见容器的底层实现方法，那肯定是不能错过《STL源码剖析》这本经典的书了。我打算在我的博客新建一个STL栏，用来记录从这本书里学到的内容，便于以后温故时习之。</p>
+<h2 id="STL六大组件功能与应用介绍"><a href="#STL六大组件功能与应用介绍" class="headerlink" title="STL六大组件功能与应用介绍"></a>STL六大组件功能与应用介绍</h2><p>STL提供了六大组件，下面将简单介绍一下这六大组件是什么。（PS：主要是书中前言对他们的概述，后期学的更深入了后会再回来补充）</p>
+<ol>
+<li><strong>容器（containers）</strong>：各种数据结构，如<code>vector</code>，<code>list</code>，<code>deque</code>，<code>set</code>，<code>map</code>用来存放数据。也可以主要分为两大类：序列容器（sequence container）和关联容器（associative container）。从实现角度来看，STL容器是一种<code>class template</code>。</li>
+<li><strong>算法（algorithms）</strong>：各种常用的算法如 <code>sort</code>，<code>search</code>，<code>copy</code>，<code>erase</code>···。从实现角度来看，STL算法是一种<code>function template</code>。</li>
+<li><strong>迭代器（iterator）：</strong>扮演容器与算法之间的胶合剂，是所谓的泛型指针，详见第三章。共有五种类型，以及其它衍生变化。从实现角度来看，迭代器是一种将 <code>operator*</code>，<code>operator-&gt;</code>，<code>operator++</code>，<code>operator--</code>等指针相关操作予以重载的<code>class template</code>。所有的STL容器都附带有自己的专属迭代器。</li>
+<li><strong>仿函数（functors）：</strong>行为类似函数，可作为算法的某种策略（policy）。从实现的角度来看，仿函数是一种重载了<code>operator()</code>的<code>class</code>或<code>class template</code>。</li>
+<li><strong>配接器（adapters）</strong>：一种用来修饰容器（containers）或仿函数（functors）或迭代器（iterators）接口的东西。例如，STL提供的<code>queue</code>和<code>stack</code>，虽然看似容器，其实只能算是一种容器配接器，因为它们底部完全借助<code>deque</code>，所有操作都由底层的deque供应。改变<code>functor</code>接口者，称为<code>functor adapter</code>；改变<code>containers</code>接口者，称为<code>container adapter</code>；改变<code>iterator</code>接口者，称为<code>iterator adapter</code>。</li>
+<li><strong>配置器（allocators）：</strong>负责空间配置与管理。从实现角度来看，配置器是实现了一个动态空间配置、空间管理、空间释放的<code>class template</code>。</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/26/pkg-config-详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1090,143 +1172,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/C-多线程（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhong ZiHao">
-      <meta itemprop="description" content="ifafa">
-      <meta itemprop="image" content="/source/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ifa's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/10/C-多线程（一）/" class="post-title-link" itemprop="url">C++多线程（一）</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-10-10 10:32:10" itemprop="dateCreated datePublished" datetime="2019-10-10T10:32:10+08:00">2019-10-10</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-18 10:44:44" itemprop="dateModified" datetime="2019-10-18T10:44:44+08:00">2019-10-18</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>转载自<a href="https://segmentfault.com/a/1190000016171072?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000016171072?utm_source=tag-newest</a></p>
-<h1 id="多线程并发（一）"><a href="#多线程并发（一）" class="headerlink" title="多线程并发（一）"></a>多线程并发（一）</h1><h1 id="什么是并发"><a href="#什么是并发" class="headerlink" title="什么是并发"></a>什么是并发</h1><p>对于<strong>单核CPU</strong>，在某个时刻只可能处理一个任务，要想处理另一个任务，只能进行任务切换，看起来任务就像在并行发生。尽管不是在严格的执行多个任务，我们也称其为<strong>并发（concurrency）</strong>。真正的并发是在多核CPU上，能够真正的同时执行多个任务，称谓<strong>硬件并发（hardware concurrency）</strong>。</p>
-<p>并发并非没有代价，单核CPU上想要并发执行任务需要付出任务之间切换的时间代价。如下图：</p>
-<p><img src="/2019/10/10/C-多线程（一）/01.png" alt="单核CPU并发执行任务"><br>单核的CPU交替执行两个任务，每次执行其中一块，其花费的时间大于按照先后顺序依次执行两个任务。这是因为CPU每次切换执行的任务块儿时需要执行一次<strong>上下文切换</strong>（图中的灰色块）。上下文切换需要操作系统为当前运行的任务保存CPU的状态和指令指针，算出要切换到哪个任务，并为要切换的任务重新加载处理器状态。然后将新任务的指令和数据载入到缓存中。</p>
-<h1 id="并发的方式"><a href="#并发的方式" class="headerlink" title="并发的方式"></a>并发的方式</h1><h2 id="多进程并发"><a href="#多进程并发" class="headerlink" title="多进程并发"></a>多进程并发</h2><p>将应用程序分为多个<strong>独立的、单线程</strong>的进程，他们可以同时运行。</p>
-<p><img src="/2019/10/10/C-多线程（一）/并发的进程之间的通讯.png" alt="并发的进程之间的通讯"></p>
-<p>这些独立的进程可以通过常规的<strong>进程间的通讯机制</strong>进行通讯，如管道、信号、消息队列、共享内存、存储映射I/O、信号量、套接字等等。</p>
-<p>缺点：</p>
-<ul>
-<li>进程间的通讯较为复杂，速度相对线程间的通讯更慢。</li>
-<li>启动进程的开销比线程大，使用的系统资源也更多。</li>
-</ul>
-<p>优点：</p>
-<ul>
-<li>进程间的通信机制相比线程更加安全。</li>
-<li>能够很容易的将一台机器上的多进程程序部署在不同的机器上。</li>
-</ul>
-<h2 id="多线程并发"><a href="#多线程并发" class="headerlink" title="多线程并发"></a>多线程并发</h2><p>线程很像轻量级的进程，但是一个进程中的所有线程都<strong>共享相同的地址空间</strong>，线程间的大部分数据都可以共享。线程间的通讯一般通过<strong>共享内存</strong>来实现。</p>
-<p>优点：</p>
-<ul>
-<li>由于可以共享数据，多线程间的通信开销比进程小得多。</li>
-<li>线程启动的比进程块，占用的资源更少。</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>共享数据太过灵活，为了维护正确的共享，代码写起来比较复杂。</li>
-<li>无法部署在分布式系统上。</li>
-</ul>
-<h1 id="什么时候不用并发"><a href="#什么时候不用并发" class="headerlink" title="什么时候不用并发"></a>什么时候不用并发</h1><p>基本上，不使用并发的唯一原因就是：<strong>收入比不上成本</strong>。除非潜在的性能增益足够大或关注点分离地足够清晰，能抵消所需的额外的开发时间以及维护多线程代码的相关额外成本。</p>
-<ul>
-<li><strong>启动线程时需要固定的开销</strong>，如果线程完成的很快，那很划不来。</li>
-<li><strong>线程是有限的资源</strong>，运行太多线程可能会耗尽进程的可用内存或地址空间。</li>
-<li>运行越多的线程，操作系统就需要做越多的<strong>上下文切换</strong>，开销越大。</li>
-</ul>
-<h1 id="多线程库简介"><a href="#多线程库简介" class="headerlink" title="多线程库简介"></a>多线程库简介</h1><p>C++11中提供了多线程的标准库，提供了管理线程、保护共享数据、线程间同步操作、原子操作等类。</p>
-<p>多线程库对应的头文件是  <code>#include &lt;thread&gt;</code>，类名为<code>std::thread</code>。</p>
-<p>一个简单的串行程序如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function_1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm function_1()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    function_1();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这是一个典型的<strong>单进程程序</strong>，任何程序都是一个进程，<code>main()</code>函数就是其中的主线程，单个线程都是顺序执行。</p>
-<p>将上面的程序改造成多线程程序其实很简单，让 function_1()函数在另外的线程中执行：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function_1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm function_1()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function">thread <span class="title">t1</span><span class="params">(function_1)</span></span>;</span><br><span class="line">    <span class="comment">// do other things</span></span><br><span class="line">    t1.join();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>分析：</p>
-<ol>
-<li>首先，构建一个<code>std::thread</code>对象<code>t1</code>，构造的时候传递一个参数，这个参数是一个函数，这个函数就是这个线程的<strong>入口函数</strong>，函数执行完了，整个线程也就执行完了。</li>
-<li>线程创建成功后，就会<strong>立即启动</strong>，并没有一个类似<code>start</code>的函数来显示的启动线程。</li>
-<li>一旦线程开始运行，就需要显示的决定是要等待它完成（join），或者分离它让它自动运行（detach）。注意：只需要在<code>std::thread</code>对象<strong>被销毁之前</strong>作出这个决定。这个例子中，对象<code>t1</code>是栈上变量，在<code>main</code>函数执行结束后就会被销毁，所以需要在<code>main</code>函数结束之前做决定。</li>
-<li>这个例子中选择使用了<code>t1.join()</code>，主线程会一直阻塞，知道子线程完成，<code>join()</code>函数的另一个任务是回收该线程中使用的资源。</li>
-</ol>
-<p><strong>线程对象和对象内部管理的线程的生命周期并不一样</strong>， 如果线程执行的快，可能内部的线程已经结束了，但线程对象还活着，也有可能线程对象已经被析构了，内部的线程还在运行。</p>
-<p>假设<code>t1</code>线程是一个执行很慢的线程，主线程并不想等待子线程结束就结束整个任务，直接删掉<code>t1.join()</code>是不行的，程序会被终止（析构<code>t1</code>的时候会调用<code>std::terminate</code>, 程序会打印<code>terminate called without an active exception</code>)。</p>
-<p>与之对应，我们可以调用<code>t1.detach()</code>，从而将<code>t1</code>线程放在<strong>后台运行</strong>，所有权和控制权被转交给<code>C++</code>运行时库，以确保与线程相关联的资源在线程退出后能被正确的回收。参考<code>UNIX</code>的<strong>守护进程（daemon process）</strong> 的概念，这种被分离的线程称为<strong>守护线程（daemon threads）</strong>。线程被分离后，及时该线程对象被析构了，线程还是能在后台继续运行，只是由于对象被析构了，主线程不能通过对象名与这个线程进行通信。例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;thread&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">function_1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 延时500ms 为了保证test()运行结束之后才打印</span></span><br><span class="line">    <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::milliseconds(<span class="number">500</span>));</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"I'm function_1()"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function">thread <span class="title">t1</span><span class="params">(function_1)</span></span>;</span><br><span class="line">    t1.detach();</span><br><span class="line">    <span class="comment">// t1.join();</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"test() finished"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    test();</span><br><span class="line">    <span class="comment">// 让主线程晚于子线程结束</span></span><br><span class="line">    <span class="built_in">std</span>::this_thread::sleep_for(<span class="built_in">std</span>::chrono::milliseconds(<span class="number">1000</span>));   <span class="comment">// 延时1s</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用t1.detach()时</span></span><br><span class="line"><span class="comment">// test() finished</span></span><br><span class="line"><span class="comment">// I'm function_1()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用t1.join()时</span></span><br><span class="line"><span class="comment">// I'm function_1()</span></span><br><span class="line"><span class="comment">// test() finished</span></span><br></pre></td></tr></table></figure></p>
-<p>分析：</p>
-<ol>
-<li>由于线程入口函数内部有个<code>500ms</code>的延时，所以在还没有打印的时候，<code>test()</code>已经执行完成了，<code>t1</code>已经被析构了，但是它负责的那个线程还是能够运行，这就是<code>detach()</code>的作用.</li>
-<li>如果去掉<code>main</code>函数中的<code>1s</code>延时，会发现<strong>什么都没有打印</strong>，因为主线程执行的太快，整个程序已经结束了，那个后台程序被<code>C++</code>运行时库回收了。</li>
-<li>如果将<code>t1.detach()</code>换成<code>t1.join()</code>，<code>test</code>函数会在<code>t1</code>线程执行结束之后，才会执行结束。</li>
-</ol>
-<p>一旦一个线程被分离了，就不能够再被<code>join</code>了。如果非要调用，程序就会崩溃，可以使用<code>joinable()</code>函数判断一个线程对象时候能调用<code>join()</code>。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="function">thread <span class="title">t1</span><span class="params">(function_1)</span></span>;</span><br><span class="line">    t1.detach();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(t1.joinable())</span><br><span class="line">        t1.join();</span><br><span class="line">    </span><br><span class="line">    assert(!t1.joinable());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1279,7 +1224,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1288,7 +1233,7 @@
       
       <div class="site-state-item site-state-tags">
         
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span>
         
       </div>
