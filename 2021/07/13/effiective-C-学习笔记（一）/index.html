@@ -56,19 +56,19 @@
   };
 </script>
 
-  <meta name="description" content="转载于 https://blog.csdn.net/xuruoxin/article/details/21984949 先来讲L、P、C、T、STR的意义L表示long指针，这是为了兼容Windows 3.1等16位操作系统遗留下来的，在win32以及其他的32位操作系统中，long和near指针及far修饰符都是为了兼容的作用，没有实际意义。即win32中，long,near,far指针与普通指">
-<meta name="keywords" content="c++">
+  <meta name="description" content="前言最近开始学习侯捷老师翻译的《effiective C++》一书，但书本上的知识如果不经常用，很快就会忘记。所以开个专栏，把从书中看到的对自己有用的知识点都记下来，希望能坚持下去。不要太着急，一步一脚印的前进。勿以浮沙筑高台，望知其所以然而非只知其然。 导读篇0-1 初始化与explicit关键字下面一段代码定义了A、B、C三个类： 123456789101112131415class A&amp;#1">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LPCSTR, LPWSTR, PTSTR, LPTSTR的区别">
-<meta property="og:url" content="http://yoursite.com/2019/12/17/LPCSTR-LPWSTR-PTSTR-LPTSTR的区别/index.html">
+<meta property="og:title" content="effiective C++学习笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2021/07/13/effiective-C-学习笔记（一）/index.html">
 <meta property="og:site_name" content="ifa&#39;s Blog">
-<meta property="og:description" content="转载于 https://blog.csdn.net/xuruoxin/article/details/21984949 先来讲L、P、C、T、STR的意义L表示long指针，这是为了兼容Windows 3.1等16位操作系统遗留下来的，在win32以及其他的32位操作系统中，long和near指针及far修饰符都是为了兼容的作用，没有实际意义。即win32中，long,near,far指针与普通指">
+<meta property="og:description" content="前言最近开始学习侯捷老师翻译的《effiective C++》一书，但书本上的知识如果不经常用，很快就会忘记。所以开个专栏，把从书中看到的对自己有用的知识点都记下来，希望能坚持下去。不要太着急，一步一脚印的前进。勿以浮沙筑高台，望知其所以然而非只知其然。 导读篇0-1 初始化与explicit关键字下面一段代码定义了A、B、C三个类： 123456789101112131415class A&amp;#1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-17T07:18:33.394Z">
+<meta property="og:updated_time" content="2021-07-13T09:02:25.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LPCSTR, LPWSTR, PTSTR, LPTSTR的区别">
-<meta name="twitter:description" content="转载于 https://blog.csdn.net/xuruoxin/article/details/21984949 先来讲L、P、C、T、STR的意义L表示long指针，这是为了兼容Windows 3.1等16位操作系统遗留下来的，在win32以及其他的32位操作系统中，long和near指针及far修饰符都是为了兼容的作用，没有实际意义。即win32中，long,near,far指针与普通指">
-  <link rel="canonical" href="http://yoursite.com/2019/12/17/LPCSTR-LPWSTR-PTSTR-LPTSTR的区别/">
+<meta name="twitter:title" content="effiective C++学习笔记（一）">
+<meta name="twitter:description" content="前言最近开始学习侯捷老师翻译的《effiective C++》一书，但书本上的知识如果不经常用，很快就会忘记。所以开个专栏，把从书中看到的对自己有用的知识点都记下来，希望能坚持下去。不要太着急，一步一脚印的前进。勿以浮沙筑高台，望知其所以然而非只知其然。 导读篇0-1 初始化与explicit关键字下面一段代码定义了A、B、C三个类： 123456789101112131415class A&amp;#1">
+  <link rel="canonical" href="http://yoursite.com/2021/07/13/effiective-C-学习笔记（一）/">
 
 
 <script id="page-configurations">
@@ -82,7 +82,7 @@
   };
 </script>
 
-  <title>LPCSTR, LPWSTR, PTSTR, LPTSTR的区别 | ifa's Blog</title>
+  <title>effiective C++学习笔记（一） | ifa's Blog</title>
   
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/17/LPCSTR-LPWSTR-PTSTR-LPTSTR的区别/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/13/effiective-C-学习笔记（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhong ZiHao">
@@ -293,7 +293,7 @@
       <meta itemprop="name" content="ifa's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">LPCSTR, LPWSTR, PTSTR, LPTSTR的区别
+        <h1 class="post-title" itemprop="name headline">effiective C++学习笔记（一）
 
           
         </h1>
@@ -309,7 +309,7 @@
                 
               
 
-              <time title="Created: 2019-12-17 14:54:43 / Modified: 15:18:33" itemprop="dateCreated datePublished" datetime="2019-12-17T14:54:43+08:00">2019-12-17</time>
+              <time title="Created: 2021-07-13 15:13:40 / Modified: 17:02:25" itemprop="dateCreated datePublished" datetime="2021-07-13T15:13:40+08:00">2021-07-13</time>
             </span>
           
             
@@ -328,11 +328,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>转载于 <a href="https://blog.csdn.net/xuruoxin/article/details/21984949" target="_blank" rel="noopener">https://blog.csdn.net/xuruoxin/article/details/21984949</a></p>
-<h2 id="先来讲L、P、C、T、STR的意义"><a href="#先来讲L、P、C、T、STR的意义" class="headerlink" title="先来讲L、P、C、T、STR的意义"></a>先来讲L、P、C、T、STR的意义</h2><p><strong>L表示long指针</strong>，这是为了兼容Windows 3.1等16位操作系统遗留下来的，在win32以及其他的32位操作系统中，long和near指针及far修饰符都是为了兼容的作用，没有实际意义。即<strong>win32中，long,near,far指针与普通指针没有区别，LP与P是等效的</strong>。<br><strong>P表示这是一个指针</strong>。<br><strong>T表示_T宏</strong>， 这个宏用来表示你的字符是否使用 UNICODE，如果你的程序定义了UNICODE或者其他相关的宏，那么这个字符或者字符串将被作为UNICODE字符串，否则就是标准的ANSI字符串。<br><strong>STR表示这个变量是一个字符串</strong>。<br><strong>C表示是一个常量，const</strong>。</p>
-<p>LPTSTR:<br>如果定义了UNICODE宏则LPTSTR被定义为 LPWSTR。 <code>typedef LPTSTR LPTWSTR;</code><br>否则LPTSTR被定义位LPSTR。   <code>typedef LPTSTR LPSTR;</code></p>
-<h2 id="下面列出一些常用的typedefs："><a href="#下面列出一些常用的typedefs：" class="headerlink" title="下面列出一些常用的typedefs："></a>下面列出一些常用的typedefs：</h2><p><strong>类型  MBCS    Unicode</strong><br><code>WCHAR  wchar_t  wchar_t</code><br><code>LPSTR  char*    char*</code><br><code>LPCSTR const char*  const char*</code><br><code>LPWSTR wchar_t*    wchar_t*</code><br><code>LPCWSTR const wchar_t* const wchar_t*</code><br><code>TCHAR  char     wchar_t</code><br><code>LPTSTR TCHAR*(或char*) TCHAR*(或wchar_t*)</code><br><code>LPCTSTR const TCHAR*   const TCHAR*</code></p>
-<p>由于Win32 API文档的函数列表使用函数的常用名字（例如，SetWindowText),所有的字符串都适用TCHAR来定义的。（除了XP中引入的只适用于Unicode的API）。所以结论，在VS2005系统中，为提高可移植性，<strong>定义字符串时使用TCHAR，转化为UNICODE时用_T而不用L</strong>。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近开始学习侯捷老师翻译的《effiective C++》一书，但书本上的知识如果不经常用，很快就会忘记。所以开个专栏，把从书中看到的对自己有用的知识点都记下来，希望能坚持下去。不要太着急，一步一脚印的前进。勿以浮沙筑高台，望知其所以然而非只知其然。</p>
+<h1 id="导读篇"><a href="#导读篇" class="headerlink" title="导读篇"></a>导读篇</h1><h2 id="0-1-初始化与explicit关键字"><a href="#0-1-初始化与explicit关键字" class="headerlink" title="0-1 初始化与explicit关键字"></a>0-1 初始化与explicit关键字</h2><p>下面一段代码定义了A、B、C三个类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  A();	<span class="comment">// 默认构造函数</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">explicit</span> <span class="title">B</span><span class="params">(<span class="keyword">int</span> x = <span class="number">0</span>, <span class="keyword">bool</span> b = <span class="literal">true</span>)</span></span>; 	<span class="comment">// default构造函数 </span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">explicit</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> x)</span></span>;		<span class="comment">// 不是default构造函数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>​        可以看到，上述的class B 和 C的构造函数都被声明为 <strong>explicit</strong>。<em>被声明为 <strong>explicit</strong>的构造函数不能被用来执行隐式类型转换（<strong>implicit type conversions</strong>）,但他们仍可被用来进行执行显示类型转换（<strong>explicit type conversions</strong>）</em>。什么意思呢，书中根据上面定义的ABC三个类，给出了如下的初始化例子来说明带<strong>explicit</strong>的构造函数的好处。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(B bObject)</span></span>;	<span class="comment">// 函数，接受一个类型为B的对象</span></span><br><span class="line"></span><br><span class="line">B bObj1;									<span class="comment">// 一个类型为B的对象</span></span><br><span class="line">doSomething(bObj1);				<span class="comment">// 没问题，传递一个B给doSomething函数</span></span><br><span class="line">B bObj2;									<span class="comment">// 没问题，根据 int 28建立一个B</span></span><br><span class="line"></span><br><span class="line">doSomething(<span class="number">28</span>);				  <span class="comment">// 错误，不能将28隐是的转换为B</span></span><br><span class="line"></span><br><span class="line">doSomething(B(<span class="number">28</span>));				<span class="comment">// 正确，使用B构造函数将int显示转换为B</span></span><br></pre></td></tr></table></figure>
+<p>​        可以看出，被声明为<strong>explicit</strong>的构造函数禁止编译器执行非预期的类型转换。</p>
+<h3 id="建议：除非有一个好理由允许构造函数被用于隐式的类型转换，否则建议声明为explicit"><a href="#建议：除非有一个好理由允许构造函数被用于隐式的类型转换，否则建议声明为explicit" class="headerlink" title="建议：除非有一个好理由允许构造函数被用于隐式的类型转换，否则建议声明为explicit"></a>建议：除非有一个好理由允许构造函数被用于隐式的类型转换，否则建议声明为explicit</h3><h2 id="0-2-copy构造函数与copy-assignment操作符"><a href="#0-2-copy构造函数与copy-assignment操作符" class="headerlink" title="0-2 copy构造函数与copy assignment操作符"></a>0-2 copy构造函数与copy assignment操作符</h2><p>​    平时在使用copy构造函数和 = 操作符时，我常常不会刻意的去想到底此时使用的是copy构造函数还是 = 操作符。那两者有什么区别呢？在《effiective C++》书中，对两者的描述是 <em>copy构造函数被用来<strong>“以同型对象初始化自我对象”</strong>， 而copy assignment 操作符被用来<strong>“从另一个同型对象中拷贝其值到自我对象”</strong></em>。换言之，前者应用于<strong>新对象被定义时</strong>的拷贝，后者用于<strong>两个已有对象</strong>的赋值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestA</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  TestA();									<span class="comment">// default构造函数</span></span><br><span class="line">  TestA(<span class="keyword">const</span> TestA&amp; ta);		<span class="comment">// copy构造函数</span></span><br><span class="line">  TestA&amp; operation= (<span class="keyword">const</span> TestA&amp; ta);	<span class="comment">// copy assignment操作符</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">TestA ta1;</span><br><span class="line"><span class="function">TestA <span class="title">ta2</span><span class="params">(ta1)</span></span>;				<span class="comment">// 有新对象ta2创建，调用copy构造函数</span></span><br><span class="line">TestA ta3 = ta1;			<span class="comment">// 有新对象ta3创建，调用copy构造函数</span></span><br><span class="line">ta3 = ta2;						<span class="comment">// 没有新对象创建，调用copy assignment操作符进行赋值操作</span></span><br></pre></td></tr></table></figure>
+<p>​        值得注意的是，操作 “TestA ta3 = ta1; ” 也是执行的 copy构造函数操作而不是用copy assignment操作符进行赋值，因为此时创建了新对象ta3。对象创建与构造函数挂钩，有新对象创建就会调用构造函数，没有新对象被创建时使用 = 操作会调用copy assignment操作符进行赋值操作。</p>
 
     </div>
 
@@ -348,7 +352,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/c/" rel="tag"># c++</a>
+              <a href="/tags/C/" rel="tag"># C++</a>
             
           </div>
         
@@ -358,8 +362,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/11/28/名字查找与类的作用域/" rel="next" title="名字查找与类的作用域">
-                  <i class="fa fa-chevron-left"></i> 名字查找与类的作用域
+                <a href="/2020/04/08/详解YUV420格式/" rel="next" title="详解YUV420格式">
+                  <i class="fa fa-chevron-left"></i> 详解YUV420格式
                 </a>
               
             </div>
@@ -367,10 +371,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/12/26/利用boost-asio实现get和post请求/" rel="prev" title="利用boost.asio实现get和post请求">
-                  利用boost.asio实现get和post请求 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -419,7 +419,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#先来讲L、P、C、T、STR的意义"><span class="nav-number">1.</span> <span class="nav-text">先来讲L、P、C、T、STR的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下面列出一些常用的typedefs："><span class="nav-number">2.</span> <span class="nav-text">下面列出一些常用的typedefs：</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#导读篇"><span class="nav-number">2.</span> <span class="nav-text">导读篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-初始化与explicit关键字"><span class="nav-number">2.1.</span> <span class="nav-text">0-1 初始化与explicit关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建议：除非有一个好理由允许构造函数被用于隐式的类型转换，否则建议声明为explicit"><span class="nav-number">2.1.1.</span> <span class="nav-text">建议：除非有一个好理由允许构造函数被用于隐式的类型转换，否则建议声明为explicit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-2-copy构造函数与copy-assignment操作符"><span class="nav-number">2.2.</span> <span class="nav-text">0-2 copy构造函数与copy assignment操作符</span></a></li></ol></li></ol></div>
         
       </div>
       <!--/noindex-->

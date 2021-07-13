@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>effiective C++学习笔记（一）</title>
+    <url>/2021/07/13/effiective-C-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近开始学习侯捷老师翻译的《effiective C++》一书，但书本上的知识如果不经常用，很快就会忘记。所以开个专栏，把从书中看到的对自己有用的知识点都记下来，希望能坚持下去。不要太着急，一步一脚印的前进。勿以浮沙筑高台，望知其所以然而非只知其然。</p>
+<h1 id="导读篇"><a href="#导读篇" class="headerlink" title="导读篇"></a>导读篇</h1><h2 id="0-1-初始化与explicit关键字"><a href="#0-1-初始化与explicit关键字" class="headerlink" title="0-1 初始化与explicit关键字"></a>0-1 初始化与explicit关键字</h2><p>下面一段代码定义了A、B、C三个类：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  A();	<span class="comment">// 默认构造函数</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">explicit</span> <span class="title">B</span><span class="params">(<span class="keyword">int</span> x = <span class="number">0</span>, <span class="keyword">bool</span> b = <span class="literal">true</span>)</span></span>; 	<span class="comment">// default构造函数 </span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="function"><span class="keyword">explicit</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> x)</span></span>;		<span class="comment">// 不是default构造函数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>​        可以看到，上述的class B 和 C的构造函数都被声明为 <strong>explicit</strong>。<em>被声明为 <strong>explicit</strong>的构造函数不能被用来执行隐式类型转换（<strong>implicit type conversions</strong>）,但他们仍可被用来进行执行显示类型转换（<strong>explicit type conversions</strong>）</em>。什么意思呢，书中根据上面定义的ABC三个类，给出了如下的初始化例子来说明带<strong>explicit</strong>的构造函数的好处。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(B bObject)</span></span>;	<span class="comment">// 函数，接受一个类型为B的对象</span></span><br><span class="line"></span><br><span class="line">B bObj1;									<span class="comment">// 一个类型为B的对象</span></span><br><span class="line">doSomething(bObj1);				<span class="comment">// 没问题，传递一个B给doSomething函数</span></span><br><span class="line">B bObj2;									<span class="comment">// 没问题，根据 int 28建立一个B</span></span><br><span class="line"></span><br><span class="line">doSomething(<span class="number">28</span>);				  <span class="comment">// 错误，不能将28隐是的转换为B</span></span><br><span class="line"></span><br><span class="line">doSomething(B(<span class="number">28</span>));				<span class="comment">// 正确，使用B构造函数将int显示转换为B</span></span><br></pre></td></tr></table></figure>
+<p>​        可以看出，被声明为<strong>explicit</strong>的构造函数禁止编译器执行非预期的类型转换。</p>
+<h3 id="建议：除非有一个好理由允许构造函数被用于隐式的类型转换，否则建议声明为explicit"><a href="#建议：除非有一个好理由允许构造函数被用于隐式的类型转换，否则建议声明为explicit" class="headerlink" title="建议：除非有一个好理由允许构造函数被用于隐式的类型转换，否则建议声明为explicit"></a>建议：除非有一个好理由允许构造函数被用于隐式的类型转换，否则建议声明为explicit</h3><h2 id="0-2-copy构造函数与copy-assignment操作符"><a href="#0-2-copy构造函数与copy-assignment操作符" class="headerlink" title="0-2 copy构造函数与copy assignment操作符"></a>0-2 copy构造函数与copy assignment操作符</h2><p>​    平时在使用copy构造函数和 = 操作符时，我常常不会刻意的去想到底此时使用的是copy构造函数还是 = 操作符。那两者有什么区别呢？在《effiective C++》书中，对两者的描述是 <em>copy构造函数被用来<strong>“以同型对象初始化自我对象”</strong>， 而copy assignment 操作符被用来<strong>“从另一个同型对象中拷贝其值到自我对象”</strong></em>。换言之，前者应用于<strong>新对象被定义时</strong>的拷贝，后者用于<strong>两个已有对象</strong>的赋值。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestA</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  TestA();									<span class="comment">// default构造函数</span></span><br><span class="line">  TestA(<span class="keyword">const</span> TestA&amp; ta);		<span class="comment">// copy构造函数</span></span><br><span class="line">  TestA&amp; operation= (<span class="keyword">const</span> TestA&amp; ta);	<span class="comment">// copy assignment操作符</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">TestA ta1;</span><br><span class="line"><span class="function">TestA <span class="title">ta2</span><span class="params">(ta1)</span></span>;				<span class="comment">// 有新对象ta2创建，调用copy构造函数</span></span><br><span class="line">TestA ta3 = ta1;			<span class="comment">// 有新对象ta3创建，调用copy构造函数</span></span><br><span class="line">ta3 = ta2;						<span class="comment">// 没有新对象创建，调用copy assignment操作符进行赋值操作</span></span><br></pre></td></tr></table></figure>
+<p>​        值得注意的是，操作 “TestA ta3 = ta1; ” 也是执行的 copy构造函数操作而不是用copy assignment操作符进行赋值，因为此时创建了新对象ta3。对象创建与构造函数挂钩，有新对象创建就会调用构造函数，没有新对象被创建时使用 = 操作会调用copy assignment操作符进行赋值操作。</p>
+]]></content>
+      <tags>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>详解YUV420格式</title>
+    <url>/2020/04/08/%E8%AF%A6%E8%A7%A3YUV420%E6%A0%BC%E5%BC%8F/</url>
+    <content><![CDATA[<p>原文地址：<a href="http://www.cnblogs.com/azraelly/achive/2013/01/01/2841269.html" target="_blank" rel="noopener">http://www.cnblogs.com/azraelly/achive/2013/01/01/2841269.html</a></p>
+<ol>
+<li>YUV简介</li>
+</ol>
+<p>YUV定义：分为三个分量，其中Y表示亮度，也即灰度值；U、V表示色度，用于指定像素的颜色。</p>
+<p>YUV格式：分为 planar（平面） 和 packed（打包）两种格式。</p>
+<p>对于planar的YUV格式，使用三个数组分开存放YUV分量，先连续存储所有的像素点的Y，紧接着存储着所有像素点的U，随后是所有像素点的V，即按序存储 Y -&gt; U -&gt; V。</p>
+<p>对于packed的YUV格式，将YUV分量存放在同一个数组中，通常是几个相邻的像素组成一个宏像素，每个像素点Y，U，V是连续交叉存储的。</p>
+]]></content>
+      <tags>
+        <tag>视音频技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SVN cleanup与sqlite3</title>
+    <url>/2020/03/01/SVN-cleanup%E4%B8%8Esqlite3/</url>
+    <content><![CDATA[<p>之前从公司拉svn代码下来的时候，老是</p>
+]]></content>
+  </entry>
+  <entry>
     <title>STL六大组件功能与应用</title>
     <url>/2020/02/27/STL%E5%85%AD%E5%A4%A7%E7%BB%84%E4%BB%B6%E5%8A%9F%E8%83%BD%E4%B8%8E%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<p>前言，最近想沉下来，学习一下常见容器的底层实现方法，那肯定是不能错过《STL源码剖析》这本经典的书了。我打算在我的博客新建一个STL栏，用来记录从这本书里学到的内容，便于以后温故时习之。</p>
