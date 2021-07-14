@@ -13,6 +13,9 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestA</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  TestA();									<span class="comment">// default构造函数</span></span><br><span class="line">  TestA(<span class="keyword">const</span> TestA&amp; ta);		<span class="comment">// copy构造函数</span></span><br><span class="line">  TestA&amp; operation= (<span class="keyword">const</span> TestA&amp; ta);	<span class="comment">// copy assignment操作符</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">TestA ta1;</span><br><span class="line"><span class="function">TestA <span class="title">ta2</span><span class="params">(ta1)</span></span>;				<span class="comment">// 有新对象ta2创建，调用copy构造函数</span></span><br><span class="line">TestA ta3 = ta1;			<span class="comment">// 有新对象ta3创建，调用copy构造函数</span></span><br><span class="line">ta3 = ta2;						<span class="comment">// 没有新对象创建，调用copy assignment操作符进行赋值操作</span></span><br></pre></td></tr></table></figure>
 <p>​        值得注意的是，操作 “TestA ta3 = ta1; ” 也是执行的 copy构造函数操作而不是用copy assignment操作符进行赋值，因为此时创建了新对象ta3。对象创建与构造函数挂钩，有新对象创建就会调用构造函数，没有新对象被创建时使用 = 操作会调用copy assignment操作符进行赋值操作。</p>
 ]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
       <tags>
         <tag>C++</tag>
       </tags>
@@ -198,7 +201,7 @@
 <p>由于Win32 API文档的函数列表使用函数的常用名字（例如，SetWindowText),所有的字符串都适用TCHAR来定义的。（除了XP中引入的只适用于Unicode的API）。所以结论，在VS2005系统中，为提高可移植性，<strong>定义字符串时使用TCHAR，转化为UNICODE时用_T而不用L</strong>。</p>
 ]]></content>
       <tags>
-        <tag>c++</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
@@ -247,6 +250,9 @@
 <p><code>string.find()</code>方法参数可以是char或者string类型，为待查找的目标，返回值为 size_type; 当查找不到目标是，返回值为 npos。下面我用两个方法结合起来写了一个替换给定字符串中的部分字符串的方法。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">ReplaceString</span><span class="params">(<span class="built_in">string</span> &amp; strSource, <span class="built_in">string</span> strOld, <span class="built_in">string</span> strNew)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> idx = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> nOldLen = strOld.length();</span><br><span class="line">	<span class="keyword">int</span> nNewLen = strNew.length();</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span>* pNew = strNew.c_str();</span><br><span class="line">	<span class="keyword">bool</span> result = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		idx = strSource.find(strOld, idx);  <span class="comment">// find strOld's idx from strOld[idx]</span></span><br><span class="line">		<span class="keyword">if</span> (idx == <span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		strSource.erase(idx, nOldLen);	<span class="comment">// 从idx开始，删除后面的nOldLen个字符</span></span><br><span class="line">		strSource.insert(idx, pNew);</span><br><span class="line">		idx += nNewLen;</span><br><span class="line">		result = <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
       <tags>
         <tag>C++</tag>
       </tags>
@@ -281,6 +287,9 @@
 <p>这个例子中，我们让线程自主分离(<code>my_thread.detach()</code>)，所以当<code>main</code>函数执行完成时，新线程中的函数可能还在执行。线程继续执行，它会去调用<code>do_something(i)</code>函数，这时就会<strong>访问已销毁的变量</strong>。就好像在一个单线程程序中，允许一个函数在调用结束后继续持有局部变量的指针和引用。容易出错。</p>
 <p>当然我们也有规避的方法：<code>使线程函数的功能齐全，将数据复制到线程中，而非复制到共享数据中</code>。如果使用一个可调用的对象作为线程函数，这个对象就会复制到线程中，而后原始对象就会被销毁。但要小心对象中的<strong>引用和指针</strong>。尽量不要使用一个包含局部变量的函数。</p>
 ]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
       <tags>
         <tag>C++</tag>
       </tags>
